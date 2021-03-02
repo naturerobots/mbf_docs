@@ -1,0 +1,21 @@
+site_name: Move Base Flex Documentation
+site_url: https://uos.github.io
+
+repo_name: Github
+repo_url: https://github.com/magazino/move_base_flex
+
+docs_dir: docs
+theme:
+    name: material
+    features:
+      - navigation.instant
+      - navigation.tabs
+
+nav:
+  - Home: index.md
+  - Getting Started: 
+    - Installation: installation.md
+    - Tutorial: tutorial.md
+  - Concepts:
+    - Architecture: concepts/architecture.md
+    - Navigation Servers: concepts/navigation_servers.md
