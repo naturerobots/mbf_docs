@@ -13,6 +13,7 @@ theme:
 
 nav:
   - Home: index.md
+  - Showcase: showcase.md
   - Getting Started: 
     - Installation: installation.md
     - Tutorial: tutorial.md
