@@ -25,6 +25,6 @@ Continue [here](./concepts/architecture.md)
 
 ## Getting Started
 
-* Follow the [MBF Starting Guide](./installation.md) and [Tutorial](./tutorial.md)
+* Follow the [MBF Starting Guide](./installation.md) and [Tutorial](./tutorials/overview.md)
 * See the [Move Base Flex Documentation and Tutorials](https://wiki.ros.org/move_base_flex) in the ROS wiki. 
 * Full code for the showcase and tutorials can be found in [this repository](https://github.com/uos/mbf_tutorials).

@@ -16,7 +16,10 @@ nav:
   - Showcase: showcase.md
   - Getting Started: 
     - Installation: installation.md
-    - Tutorial: tutorial.md
+    - Tutorials: tutorials/overview.md
+  - Tutorials:
+    - Beginner: tutorials/beginner.md
+    - Advanced: tutorials/advanced.md
   - Concepts:
     - Architecture: concepts/architecture.md
     - Navigation Servers: concepts/navigation_servers.md
