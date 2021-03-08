@@ -11,6 +11,11 @@ theme:
       - navigation.instant
       - navigation.tabs
 
+markdown_extensions:
+  - pymdownx.highlight
+  - pymdownx.superfences
+  - pymdownx.tabbed
+
 nav:
   - Home: index.md
   - Showcase: showcase.md
@@ -18,8 +23,13 @@ nav:
     - Installation: installation.md
     - Tutorials: tutorials/overview.md
   - Tutorials:
-    - Beginner: tutorials/beginner.md
+    - Beginner: 
+      - Welcome: tutorials/beginner/beginner.md
+      - MoveBase to MoveBaseFlex: tutorials/beginner/mb_to_mbf.md
     - Advanced: tutorials/advanced.md
+    - Expert: tutorials/expert.md
+    - Writing MBF Plugins: tutorials/writing_mbf_plugins.md
+    - Mesh Navigation Stack: tutorials/mesh_navigation_stack.md
   - Concepts:
     - Architecture: concepts/architecture.md
     - Navigation Servers: concepts/navigation_servers.md
