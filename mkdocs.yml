@@ -24,8 +24,9 @@ nav:
     - Tutorials: tutorials/overview.md
   - Tutorials:
     - Beginner: 
-      - Welcome: tutorials/beginner/beginner.md
-      - MoveBase to MoveBaseFlex: tutorials/beginner/mb_to_mbf.md
+      - Welcome: tutorials/beginner/welcome.md
+      - Basic Navigation: tutorials/beginner/basic_navigation.md
+      - Beyond the Relay - Move Base Flex: tutorials/beginner/beyond_relay.md
     - Advanced: tutorials/advanced.md
     - Expert: tutorials/expert.md
     - Writing MBF Plugins: tutorials/writing_mbf_plugins.md

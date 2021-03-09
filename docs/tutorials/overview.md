@@ -10,7 +10,7 @@ Introduction to the ROS planning stack with Move Base (Flex) and a Turtlebot in 
     * Move Base and its configuration to send your robot to the requested location
     * write a simple SMACH.
 
-    Continue [here](./beginner.md)
+    Continue [here](./beginner/welcome.md)
 
 2. **Advanced** <br> 
 The advanced tutorial will teach you
