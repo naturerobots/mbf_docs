@@ -2,7 +2,7 @@
 
 Using a relay from Move Base to Move Base Flex is the easiest way to get started with Move Base Flex. This does, however, make it harder to use advanced features of Move Base Flex. Let's start with understanding the differences between the respective Actions:
 
-## *mb_msgs/MoveBaseAction* vs *mbf_msgs/MoveBaseAction*
+## mb_msgs/MoveBaseAction vs mbf_msgs/MoveBaseAction
 
 === "mb_msgs/MoveBaseAction"
 
@@ -82,3 +82,15 @@ Using a relay from Move Base to Move Base Flex is the easiest way to get started
     ```
 
     [Source](https://github.com/magazino/move_base_flex/blob/master/mbf_msgs/action/MoveBase.action)
+
+
+## Interacting with Move Base Flex
+
+From a client perspective, the primary interface to work with Move Base Flex is the actionlibs SimpleActionServer. If you have never heard of actionlib, the [ROS Wiki](https://wiki.ros.org/actionlib_tutorials) has some good tutorials for it. We did, however, already use actionlib in earlier parts of this tutorial.
+
+In principle, a `SimpleActionServer` expects a name and an *action* (ROS message type) that it will perform. A `SimpleActionClient` can then connect to the Server by name and Action and send respective *goals*, which are just the specific *action* with a ROS header and Goal ID.
+
+```python
+mbf_mb_ac = actionlib.SimpleActionClient("move_base_flex/move_base", mbf_msgs.MoveBaseAction)
+mbf_mb_ac.wait_for_server(rospy.Duration(10))
+```

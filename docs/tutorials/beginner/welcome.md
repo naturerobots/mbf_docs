@@ -10,4 +10,9 @@ cd ~/catkin_ws/
 catkin_make
 ```
 
+## Topics
+
+1. Basic Navigation <br> Learn how to move a robot from point a to b with Move Base Flex and RViz. Continue [here](./basic_navigation.md).
+2. Beyond the Relay <br> Learn to use the Move Base Flex API directly and leave Move Base behind. Continue [here](./beyond_relay.md).
+
 The full source code can be found [here](https://github.com/uos/mbf_tutorials/tree/master/beginner).

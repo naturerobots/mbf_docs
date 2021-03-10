@@ -1,5 +1,10 @@
-# From Move Base to Move Base Flex
+# Basic Navigation
+
 ## Run tutorial
+
+For a quick demo, just follow the following steps. You will learn how to control the turtlebot in a simulation environment, with the help of RViz. Because this is so simple (in principle), we will relay Move Base Messages to Move Base Flex and let Move Base Flex take over planning. Let's begin.
+
+<br>
 
 Clone [mbf_tutorials](https://github.com/uos/mbf_tutorials) 
 ```bash
@@ -9,6 +14,13 @@ Install dependencies with rosdep
 ```bash
 rosdep install turtlebot3_mbf
 ```
+
+??? question "Using ROS noetic?"
+    rosdep install will fail for `eband_local_planner`, because the team hasn't released the version for noetic yet. Simply clone the repository:
+    ```
+    git clone git@github.com:utexas-bwi/eband_local_planner.git ~/catkin_ws/src/eband_local_planner
+    ```
+
 From source of workspace: 
 ```bash
 cd ~/catkin_ws/src
