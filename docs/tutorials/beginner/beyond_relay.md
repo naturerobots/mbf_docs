@@ -22,7 +22,7 @@ Using a relay from Move Base to Move Base Flex is the easiest way to get started
 
     Move Base Flex uses the same target/result feedback/action feedback structure, but adds new functionality:
     
-    * More detailed result feedback
+    * More detailed result feedback (per default)
     * More defailed feedback possibilities
     * plugins: controller (local planner), planner (global planner), recovery_behaviors 
 
@@ -90,7 +90,115 @@ From a client perspective, the primary interface to work with Move Base Flex is 
 
 In principle, a `SimpleActionServer` expects a name and an *action* (ROS message type) that it will perform. A `SimpleActionClient` can then connect to the Server by name and Action and send respective *goals*, which are just the specific *action* with a ROS header and Goal ID.
 
+## Driving a Circle with Move Base Flex
+
+In the previous example, we used a relay to Move Base with a Move Base `SimpleActionServer`. Using this method, the Move Base Flex is hidden, so to speak, inside the relay, and the corresponding Move Base Client is limited to the functionality of the Move Base Action Server. The following example will use the additional information the Move Base Flex Action Server provides.
+
+We can, however, use the Move Base Flex Action server that is started with Move Base Flex to interact with the framework directly. This is the circle driving robot with Move Base Flex only.
+
+### Code
+
 ```python
-mbf_mb_ac = actionlib.SimpleActionClient("move_base_flex/move_base", mbf_msgs.MoveBaseAction)
-mbf_mb_ac.wait_for_server(rospy.Duration(10))
+import actionlib
+import rospy
+import mbf_msgs.msg as mbf_msgs
+
+
+def create_goal(x, y, z, xx, yy, zz, ww):
+    goal = mbf_msgs.MoveBaseGoal()
+    goal.target_pose.header.frame_id = "map"
+    goal.target_pose.header.stamp = rospy.Time.now()
+    goal.target_pose.pose.position.x = x
+    goal.target_pose.pose.position.y = y
+    goal.target_pose.pose.position.z = z
+    goal.target_pose.pose.orientation.x = xx
+    goal.target_pose.pose.orientation.y = yy
+    goal.target_pose.pose.orientation.z = zz
+    goal.target_pose.pose.orientation.w = ww
+    return goal
+
+
+def move(goal):
+    mbf_ac.send_goal(goal)
+    mbf_ac.wait_for_result()
+    return mbf_ac.get_result()
+
+
+def drive_circle():
+    goals = [   create_goal(-1.75, 0.74, 0, 0, 0, 0.539, 0.843),
+                create_goal(-0.36, 1.92, 0, 0, 0, -0.020, 0.999),
+                ...
+    ]
+
+    for goal in goals:
+        rospy.loginfo("Attempting to reach (%1.3f, %1.3f)", goal.target_pose.pose.position.x, goal.target_pose.pose.position.y)
+        result = move(goal)
+
+        if result.outcome != mbf_msgs.MoveBaseResult.SUCCESS:
+            rospy.loginfo("Unable to complete action")
+            return 
+
+if __name__ == '__main__':
+    rospy.init_node("move_base_flex_client")
+
+    mbf_ac = actionlib.SimpleActionClient("move_base_flex/move_base", mbf_msgs.MoveBaseAction)
+    mbf_ac.wait_for_server(rospy.Duration(10))
+    rospy.loginfo("Connected to Move Base Flex action server!")
+
+    drive_circle()
+
 ```
+
+### The Code Explained
+
+We start by creating the Move Base Flex Action Client that tries to connect to the server running at `/move_base_flex/move_base`.
+
+```python
+mbf_ac = actionlib.SimpleActionClient("move_base_flex/move_base", mbf_msgs.MoveBaseAction)
+mbf_ac.wait_for_server(rospy.Duration(10))
+rospy.loginfo("Connected to Move Base Flex action server!")
+```
+
+To actually drive the circle, we can create goals of type `mbf_msgs.MoveBaseGoal`
+
+```python
+def create_goal(x, y, z, xx, yy, zz, ww):
+    goal = mbf_msgs.MoveBaseGoal()
+    goal.target_pose.header.frame_id = "map"
+    goal.target_pose.header.stamp = rospy.Time.now()
+    goal.target_pose.pose.position.x = x
+    goal.target_pose.pose.position.y = y
+    goal.target_pose.pose.position.z = z
+    goal.target_pose.pose.orientation.x = xx
+    goal.target_pose.pose.orientation.y = yy
+    goal.target_pose.pose.orientation.z = zz
+    goal.target_pose.pose.orientation.w = ww
+    return goal
+```
+
+and send them to the Server
+
+```python
+def move(goal):
+    mbf_ac.send_goal(goal)
+    mbf_ac.wait_for_result()
+    return mbf_ac.get_result()
+```
+
+and can check for additional, rich result information like outcome, message and others (see first Section overview of `mbf_msgs/MoveBaseAction`)
+
+```python
+if result.outcome != mbf_msgs.MoveBaseResult.SUCCESS:
+    rospy.loginfo("Unable to complete action: %s", result.message)
+    return 
+```
+
+<br>
+
+### The Result
+
+![](../../img/turtlebot_mbf_circle.gif)
+
+<br>
+
+The full source code can be found [here](https://github.com/uos/mbf_tutorials/tree/master/beginner).

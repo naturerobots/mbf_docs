@@ -279,5 +279,13 @@ and client node to send the goals!
 rosrun turtlebot3_mbf mb_relay_client.py
 ```
 
+<br>
+
+### The Result
+
+![](../../img/turtlebot_mbf_circle.gif)
+
+<br>
+
 The full source code can be found [here](https://github.com/uos/mbf_tutorials/tree/master/beginner).
 
