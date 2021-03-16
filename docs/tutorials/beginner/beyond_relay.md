@@ -1,6 +1,8 @@
 # Leaving the Relay Behind
 
-Using a relay from Move Base to Move Base Flex is the easiest way to get started with Move Base Flex. This does, however, make it harder to use advanced features of Move Base Flex. Let's start with understanding the differences between the respective Actions:
+Using a relay from Move Base to Move Base Flex is the easiest way to get started with Move Base Flex, when coming from Move Base. 
+
+This does, however, make it harder to use advanced features of Move Base Flex. Let's start with understanding the differences between the respective Actions:
 
 ## mb_msgs/MoveBaseAction vs mbf_msgs/MoveBaseAction
 
@@ -94,7 +96,7 @@ In principle, a `SimpleActionServer` expects a name and an *action* (ROS message
 
 In the previous example, we used a relay to Move Base with a Move Base `SimpleActionServer`. Using this method, the Move Base Flex is hidden, so to speak, inside the relay, and the corresponding Move Base Client is limited to the functionality of the Move Base Action Server. The following example will use the additional information the Move Base Flex Action Server provides.
 
-We can, however, use the Move Base Flex Action server that is started with Move Base Flex to interact with the framework directly. This is the circle driving robot with Move Base Flex only.
+We can use the Move Base Flex Action server that is started with Move Base Flex to interact with the framework directly. This is the circle driving robot with Move Base Flex only.
 
 ### Code
 
@@ -127,7 +129,12 @@ def move(goal):
 def drive_circle():
     goals = [   create_goal(-1.75, 0.74, 0, 0, 0, 0.539, 0.843),
                 create_goal(-0.36, 1.92, 0, 0, 0, -0.020, 0.999),
-                ...
+                create_goal(0.957, 1.60, 0, 0, 0, -0.163, 0.987),
+                create_goal(1.8741, 0.3830, 0, 0, 0, -0.70, 0.711),
+                create_goal(1.752, -0.928, 0, 0, 0, -0.856, 0.517),
+                create_goal(0.418, -2.116, 0, 0, 0, 0.998, 0.0619),
+                create_goal(-0.775, -1.80, 0, 0, 0, 0.954, 0.300),
+                create_goal(-1.990, -0.508, 0, 0, 0, -0.112, 0.999)
     ]
 
     for goal in goals:
@@ -135,7 +142,7 @@ def drive_circle():
         result = move(goal)
 
         if result.outcome != mbf_msgs.MoveBaseResult.SUCCESS:
-            rospy.loginfo("Unable to complete action")
+            rospy.loginfo("Unable to complete action: %s", result.message)
             return 
 
 if __name__ == '__main__':
@@ -193,9 +200,37 @@ if result.outcome != mbf_msgs.MoveBaseResult.SUCCESS:
     return 
 ```
 
+### Run the example
+
+Launch gazebo
+
+```bash
+export TURTLEBOT3_MODEL=burger
+roslaunch turtlebot3_gazebo turtlebot3_world.launch
+```
+
+as well as the Move Base Flex Action Server 
+
+```bash
+export TURTLEBOT3_MODEL=burger
+roslaunch turtlebot3_mbf amcl_demo_mbf.launch
+```
+
+and client node to send the goals!
+
+```bash
+rosrun turtlebot3_mbf mbf_goal_client.py
+```
+
 <br>
 
 ### The Result
+
+Open RViz with
+
+```bash
+roslaunch turtlebot3_mbf rviz.launch
+```
 
 ![](../../img/turtlebot_mbf_circle.gif)
 

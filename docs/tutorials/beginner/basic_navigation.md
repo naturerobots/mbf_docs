@@ -267,9 +267,19 @@ client.wait_for_result()
 return client.get_state() == GoalStatus.SUCCEEDED
 ```
 
-To run the example, launch the server 
+### Run the example
+
+Launch gazebo
 
 ```bash
+export TURTLEBOT3_MODEL=burger
+roslaunch turtlebot3_gazebo turtlebot3_world.launch
+```
+
+as well as the server 
+
+```bash
+export TURTLEBOT3_MODEL=burger
 roslaunch turtlebot3_mbf amcl_demo_relay_server.launch
 ```
 
@@ -282,6 +292,12 @@ rosrun turtlebot3_mbf mb_relay_client.py
 <br>
 
 ### The Result
+
+Open RViz with
+
+```bash
+roslaunch turtlebot3_mbf rviz.launch
+```
 
 ![](../../img/turtlebot_mbf_circle.gif)
 
