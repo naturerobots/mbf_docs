@@ -4,9 +4,9 @@ name: Build Documentation using MkDocs
 # events but only for the master branch
 on:
   push:
-    branches: [gh-pages]
+    branches: [deploy]
   pull_request:
-    branches: [gh-pages]
+    branches: [deploy]
 
 jobs:
   build:
