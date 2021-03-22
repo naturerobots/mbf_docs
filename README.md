@@ -1,6 +1,6 @@
 # Move Base Flex Docs
 
-These docs are built with [MkDocs](https://mkdocs.org)
+These docs are built with [MkDocs](https://mkdocs.org) and published to [uos.github.io/mbf_docs](https://uos.github.io/mbf_docs)
 
 ## Build locally
 
@@ -22,3 +22,7 @@ mkdocs build --strict
 ```
 mkdocs serve --strict
 ```
+
+## Deploy to uos.github.io/mbf_docs
+
+Anything pushed to branch `deploy` will trigger a Github Action that builds the website and updates [uos.github.io/mbf_docs](https://uos.github.io/mbf_docs)
