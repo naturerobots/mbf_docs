@@ -572,10 +572,49 @@
   
   
   
-    <li class="md-nav__item">
-      <a href="../parameters/" class="md-nav__link">
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_1_5" type="checkbox" id="__nav_4_1_5" >
+      
+      <label class="md-nav__link" for="__nav_4_1_5">
         Parameters and Configuration
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Parameters and Configuration" data-md-level="3">
+        <label class="md-nav__title" for="__nav_4_1_5">
+          <span class="md-nav__icon md-icon"></span>
+          Parameters and Configuration
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../parameters/overview/" class="md-nav__link">
+        Overview
       </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../parameters/mbf_parameters/" class="md-nav__link">
+        MBF Parameters
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
     </li>
   
 
@@ -856,8 +895,8 @@
 <p>Clone <a href="https://github.com/uos/mbf_tutorials">mbf_tutorials</a> 
 <div class="highlight"><pre><span></span><code>git clone git@github.com:uos/mbf_tutorials.git ~/catkin_ws/src/mbf_tutorials
 </code></pre></div>
-Install dependencies with rosdep
-<div class="highlight"><pre><span></span><code>rosdep install turtlebot3_mbf
+Install dependencies with rosdep (include all tutorials for ease of use)
+<div class="highlight"><pre><span></span><code>rosdep install mbf_beginner mbf_advanced
 </code></pre></div></p>
 <details class="question"><summary>Using ROS noetic?</summary><p>rosdep install will fail for <code>eband_local_planner</code>, because the team hasn't released the version for noetic yet. Simply clone the repository:
 <div class="highlight"><pre><span></span><code>git clone git@github.com:utexas-bwi/eband_local_planner.git ~/catkin_ws/src/eband_local_planner
@@ -874,10 +913,10 @@ Launch the appropriate gazebo world
 <div class="highlight"><pre><span></span><code>roslaunch turtlebot3_gazebo turtlebot3_world.launch
 </code></pre></div>
 Start localization (AMCL)
-<div class="highlight"><pre><span></span><code>roslaunch turtlebot3_mbf amcl_demo_relay_subscriber.launch
+<div class="highlight"><pre><span></span><code>roslaunch mbf_beginner amcl_demo_relay_subscriber.launch
 </code></pre></div></p>
 <p>Launch Rviz
-<div class="highlight"><pre><span></span><code>roslaunch turtlebot3_mbf rviz.launch
+<div class="highlight"><pre><span></span><code>roslaunch mbf_beginner rviz.launch
 </code></pre></div></p>
 <p>In RViz</p>
 <ul>
@@ -1067,15 +1106,15 @@ roslaunch turtlebot3_gazebo turtlebot3_world.launch
 </code></pre></div>
 <p>as well as the server </p>
 <div class="highlight"><pre><span></span><code><span class="nb">export</span> <span class="nv">TURTLEBOT3_MODEL</span><span class="o">=</span>burger
-roslaunch turtlebot3_mbf amcl_demo_relay_server.launch
+roslaunch mbf_beginner amcl_demo_relay_server.launch
 </code></pre></div>
 <p>and client node to send the goals!</p>
-<div class="highlight"><pre><span></span><code>rosrun turtlebot3_mbf mb_relay_client.py
+<div class="highlight"><pre><span></span><code>rosrun mbf_beginner mb_relay_client.py
 </code></pre></div>
 <p><br></p>
 <h3 id="the-result">The Result</h3>
 <p>Open RViz with</p>
-<div class="highlight"><pre><span></span><code>roslaunch turtlebot3_mbf rviz.launch
+<div class="highlight"><pre><span></span><code>roslaunch mbf_beginner rviz.launch
 </code></pre></div>
 <p><img alt="" src="../../../img/turtlebot_mbf_circle.gif" /></p>
 <p><br></p>
