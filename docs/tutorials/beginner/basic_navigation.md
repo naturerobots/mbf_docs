@@ -10,9 +10,9 @@ Clone [mbf_tutorials](https://github.com/uos/mbf_tutorials)
 ```bash
 git clone git@github.com:uos/mbf_tutorials.git ~/catkin_ws/src/mbf_tutorials
 ```
-Install dependencies with rosdep
+Install dependencies with rosdep (include all tutorials for ease of use)
 ```bash
-rosdep install turtlebot3_mbf
+rosdep install mbf_beginner mbf_advanced
 ```
 
 ??? question "Using ROS noetic?"
@@ -36,12 +36,12 @@ roslaunch turtlebot3_gazebo turtlebot3_world.launch
 ```
 Start localization (AMCL)
 ```bash
-roslaunch turtlebot3_mbf amcl_demo_relay_subscriber.launch
+roslaunch mbf_beginner amcl_demo_relay_subscriber.launch
 ```
 
 Launch Rviz
 ```bash
-roslaunch turtlebot3_mbf rviz.launch
+roslaunch mbf_beginner rviz.launch
 ```
 
 In RViz
@@ -280,13 +280,13 @@ as well as the server
 
 ```bash
 export TURTLEBOT3_MODEL=burger
-roslaunch turtlebot3_mbf amcl_demo_relay_server.launch
+roslaunch mbf_beginner amcl_demo_relay_server.launch
 ```
 
 and client node to send the goals!
 
 ```bash
-rosrun turtlebot3_mbf mb_relay_client.py
+rosrun mbf_beginner mb_relay_client.py
 ```
 
 <br>
@@ -296,7 +296,7 @@ rosrun turtlebot3_mbf mb_relay_client.py
 Open RViz with
 
 ```bash
-roslaunch turtlebot3_mbf rviz.launch
+roslaunch mbf_beginner rviz.launch
 ```
 
 ![](../../img/turtlebot_mbf_circle.gif)

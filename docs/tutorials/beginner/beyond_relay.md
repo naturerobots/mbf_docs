@@ -213,13 +213,13 @@ as well as the Move Base Flex Action Server
 
 ```bash
 export TURTLEBOT3_MODEL=burger
-roslaunch turtlebot3_mbf amcl_demo_mbf.launch
+roslaunch mbf_beginner amcl_demo_mbf.launch
 ```
 
 and client node to send the goals!
 
 ```bash
-rosrun turtlebot3_mbf mbf_goal_client.py
+rosrun mbf_beginner mbf_goal_client.py
 ```
 
 <br>
@@ -229,7 +229,7 @@ rosrun turtlebot3_mbf mbf_goal_client.py
 Open RViz with
 
 ```bash
-roslaunch turtlebot3_mbf rviz.launch
+roslaunch mbf_beginner rviz.launch
 ```
 
 ![](../../img/turtlebot_mbf_circle.gif)

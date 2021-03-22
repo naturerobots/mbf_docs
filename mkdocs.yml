@@ -30,7 +30,9 @@ nav:
       - Basic Navigation: tutorials/beginner/basic_navigation.md
       - Beyond the Relay - Move Base Flex: tutorials/beginner/beyond_relay.md
       - Path Planning: tutorials/beginner/path_planning.md
-      - Parameters and Configuration: tutorials/beginner/parameters.md
+      - Parameters and Configuration: 
+        - Overview: tutorials/beginner/parameters/overview.md
+        - MBF Parameters: tutorials/beginner/parameters/mbf_parameters.md
     - Advanced: 
       - Welcome: tutorials/advanced/welcome.md
       - Writing a simple SMACH: tutorials/advanced/smach.md

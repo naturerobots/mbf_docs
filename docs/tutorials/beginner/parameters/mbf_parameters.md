@@ -1,6 +1,6 @@
-# Parameters and Configuration
+# MBF Parameters
 
-## Dynamically Reconfigurable Parameters
+## Dynamically Reconfigurable MBF Parameters
 
 The following parameters are changable at runtime, with `rqt_reconfigure`, or with launch file arguments
 
@@ -39,6 +39,46 @@ The following parameters are changable at runtime, with `rqt_reconfigure`, or wi
 | shutdown_costmaps | shutdown the costmaps of the node when move_base_flex is in an inactive state |  false |
 | shutdown_costmaps_delay | How long in seconds to wait after last action before shutting down the costmaps |  1.0 |
 
+
+### Example
+
+The beginner tutorials uses this configuration, for example
+
+```
+planners:
+  - name: navfn/NavfnROS
+    type: navfn/NavfnROS
+
+controllers:
+  - name: eband_local_planner/EBandPlannerROS
+    type: eband_local_planner/EBandPlannerROS
+
+controller_frequency: 5.0
+controller_patience: 3.0
+
+planner_frequency: 1.0
+planner_patience: 5.0
+
+oscillation_timeout: 10.0
+oscillation_distance: 0.2
+```
+
+and loads these initial parameters (among others) in the launch file
+
+```xml
+<launch>
+  <arg name="model" default="$(env TURTLEBOT3_MODEL)" doc="model type [burger, waffle, waffle_pi]"/>
+
+  <node name="move_base_flex" pkg="mbf_costmap_nav" type="mbf_costmap_nav" required="true" output="screen" clear_params="true">
+    <rosparam file="$(find turtlebot3_navigation)/param/costmap_common_params_$(arg model).yaml" command="load" ns="global_costmap" />
+    <rosparam file="$(find turtlebot3_navigation)/param/costmap_common_params_$(arg model).yaml" command="load" ns="local_costmap" />
+    <rosparam file="$(find turtlebot3_navigation)/param/local_costmap_params.yaml" command="load" />
+    <rosparam file="$(find turtlebot3_navigation)/param/global_costmap_params.yaml" command="load" />
+=>  <rosparam file="$(find mbf_beginner)/param/move_base_flex.yaml" command="load"/>
+  </node>
+</launch>
+```
+
 #### Sources
 
 * [mbf_abstract_nav](https://github.com/magazino/move_base_flex/blob/596ed881bfcbd847e9d296c6d38e4d3fa3b74a4d/mbf_abstract_nav/src/mbf_abstract_nav/__init__.py)
@@ -64,3 +104,11 @@ Move Base Flex has a number of parameters, that are not dynamically changable
 `dist_tolerance` | distance tolerance to the given goal pose | 0.1 |
 `angle_tolerance` | angle tolerance to the given goal pose | π / 18.0 |
 `tf_timeout` | time before a timeout used for tf requests | 1.0 |
+
+### Global Costmap
+
+TODO
+
+### Local Costmap
+
+TODO
