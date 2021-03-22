@@ -1,0 +1,1157 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="canonical" href="https://uos.github.io/tutorials/beginner/basic_navigation/">
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.0.6">
+    
+    
+      
+        <title>Basic Navigation - Move Base Flex Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.2c0c5eaf.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.7fa14f5b.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+      
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#basic-navigation" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Move Base Flex Documentation" class="md-header__button md-logo" aria-label="Move Base Flex Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Move Base Flex Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Basic Navigation
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="md-header__options">
+      
+    </div>
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        
+<a href="https://github.com/magazino/move_base_flex/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Github
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../.." class="md-tabs__link">
+      Home
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../../showcase/" class="md-tabs__link">
+      Showcase
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../installation/" class="md-tabs__link">
+        Getting Started
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../welcome/" class="md-tabs__link md-tabs__link--active">
+        Tutorials
+      </a>
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../concepts/architecture/" class="md-tabs__link">
+        Concepts
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Move Base Flex Documentation" class="md-nav__button md-logo" aria-label="Move Base Flex Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    Move Base Flex Documentation
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/magazino/move_base_flex/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Github
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../showcase/" class="md-nav__link">
+        Showcase
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      <label class="md-nav__link" for="__nav_3">
+        Getting Started
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Getting Started" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Getting Started
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../installation/" class="md-nav__link">
+        Installation
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../overview/" class="md-nav__link">
+        Tutorials
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" checked>
+      
+      <label class="md-nav__link" for="__nav_4">
+        Tutorials
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Tutorials" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          Tutorials
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_1" type="checkbox" id="__nav_4_1" checked>
+      
+      <label class="md-nav__link" for="__nav_4_1">
+        Beginner
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Beginner" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_1">
+          <span class="md-nav__icon md-icon"></span>
+          Beginner
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../welcome/" class="md-nav__link">
+        Welcome
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Basic Navigation
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Basic Navigation
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#run-tutorial" class="md-nav__link">
+    Run tutorial
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-is-happening-here" class="md-nav__link">
+    What is happening here?
+  </a>
+  
+    <nav class="md-nav" aria-label="What is happening here?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#code" class="md-nav__link">
+    Code
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-code-explained" class="md-nav__link">
+    The Code Explained
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#a-relay-with-more-control" class="md-nav__link">
+    A Relay with more control
+  </a>
+  
+    <nav class="md-nav" aria-label="A Relay with more control">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#code_1" class="md-nav__link">
+    Code
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-code-explained_1" class="md-nav__link">
+    The Code Explained
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#run-the-example" class="md-nav__link">
+    Run the example
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-result" class="md-nav__link">
+    The Result
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../beyond_relay/" class="md-nav__link">
+        Beyond the Relay - Move Base Flex
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../path_planning/" class="md-nav__link">
+        Path Planning
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../parameters/" class="md-nav__link">
+        Parameters and Configuration
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_2" type="checkbox" id="__nav_4_2" >
+      
+      <label class="md-nav__link" for="__nav_4_2">
+        Advanced
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Advanced" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_2">
+          <span class="md-nav__icon md-icon"></span>
+          Advanced
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced/welcome/" class="md-nav__link">
+        Welcome
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced/smach/" class="md-nav__link">
+        Writing a simple SMACH
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../expert/" class="md-nav__link">
+        Expert
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../writing_mbf_plugins/" class="md-nav__link">
+        Writing MBF Plugins
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mesh_navigation_stack/" class="md-nav__link">
+        Mesh Navigation Stack
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" >
+      
+      <label class="md-nav__link" for="__nav_5">
+        Concepts
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Concepts" data-md-level="1">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          Concepts
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../concepts/architecture/" class="md-nav__link">
+        Architecture
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../concepts/navigation_servers/" class="md-nav__link">
+        Navigation Servers
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#run-tutorial" class="md-nav__link">
+    Run tutorial
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-is-happening-here" class="md-nav__link">
+    What is happening here?
+  </a>
+  
+    <nav class="md-nav" aria-label="What is happening here?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#code" class="md-nav__link">
+    Code
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-code-explained" class="md-nav__link">
+    The Code Explained
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#a-relay-with-more-control" class="md-nav__link">
+    A Relay with more control
+  </a>
+  
+    <nav class="md-nav" aria-label="A Relay with more control">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#code_1" class="md-nav__link">
+    Code
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-code-explained_1" class="md-nav__link">
+    The Code Explained
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#run-the-example" class="md-nav__link">
+    Run the example
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-result" class="md-nav__link">
+    The Result
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/magazino/move_base_flex/edit/master/docs/tutorials/beginner/basic_navigation.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                <h1 id="basic-navigation">Basic Navigation</h1>
+<h2 id="run-tutorial">Run tutorial</h2>
+<p>For a quick demo, just follow the following steps. You will learn how to control the turtlebot in a simulation environment, with the help of RViz. Because this is so simple (in principle), we will relay Move Base Messages to Move Base Flex and let Move Base Flex take over planning. Let's begin.</p>
+<p><br></p>
+<p>Clone <a href="https://github.com/uos/mbf_tutorials">mbf_tutorials</a> 
+<div class="highlight"><pre><span></span><code>git clone git@github.com:uos/mbf_tutorials.git ~/catkin_ws/src/mbf_tutorials
+</code></pre></div>
+Install dependencies with rosdep
+<div class="highlight"><pre><span></span><code>rosdep install turtlebot3_mbf
+</code></pre></div></p>
+<details class="question"><summary>Using ROS noetic?</summary><p>rosdep install will fail for <code>eband_local_planner</code>, because the team hasn't released the version for noetic yet. Simply clone the repository:
+<div class="highlight"><pre><span></span><code>git clone git@github.com:utexas-bwi/eband_local_planner.git ~/catkin_ws/src/eband_local_planner
+</code></pre></div></p>
+</details>
+<p>From source of workspace: 
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span> ~/catkin_ws/src
+catkin_make -j4 <span class="o">&amp;&amp;</span> <span class="nb">source</span> devel/setup.bash<span class="sb">`</span>
+</code></pre></div>
+Define the Turlebot model you want to use:
+<div class="highlight"><pre><span></span><code><span class="nb">export</span> <span class="nv">TURTLEBOT3_MODEL</span><span class="o">=</span>burger
+</code></pre></div>
+Launch the appropriate gazebo world
+<div class="highlight"><pre><span></span><code>roslaunch turtlebot3_gazebo turtlebot3_world.launch
+</code></pre></div>
+Start localization (AMCL)
+<div class="highlight"><pre><span></span><code>roslaunch turtlebot3_mbf amcl_demo_relay_subscriber.launch
+</code></pre></div></p>
+<p>Launch Rviz
+<div class="highlight"><pre><span></span><code>roslaunch turtlebot3_mbf rviz.launch
+</code></pre></div></p>
+<p>In RViz</p>
+<ul>
+<li>Set an Initial Pose estimate with the <code>2D Pose Estimate</code> Pose</li>
+<li>Finally set your Navigation Goal with the <code>2D Nav Goal</code> Pose</li>
+</ul>
+<p>You will now be able to navigate in a similar fashion to this:</p>
+<p><img alt="" src="../../../img/demo.gif" /></p>
+<p><br></p>
+<h2 id="what-is-happening-here">What is happening here?</h2>
+<p>We used Move Base Flex by relaying <code>mb_msgs/MoveBaseAction</code> to <code>mbf_msgs/MoveBaseAction</code>. </p>
+<h3 id="code">Code</h3>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">actionlib</span>
+<span class="kn">import</span> <span class="nn">rospy</span>
+<span class="kn">import</span> <span class="nn">nav_msgs.srv</span> <span class="k">as</span> <span class="nn">nav_srvs</span>
+<span class="kn">import</span> <span class="nn">mbf_msgs.msg</span> <span class="k">as</span> <span class="nn">mbf_msgs</span>
+<span class="kn">import</span> <span class="nn">move_base_msgs.msg</span> <span class="k">as</span> <span class="nn">mb_msgs</span>
+<span class="kn">from</span> <span class="nn">geometry_msgs.msg</span> <span class="kn">import</span> <span class="n">PoseStamped</span>
+
+<span class="k">def</span> <span class="nf">simple_goal_cb</span><span class="p">(</span><span class="n">msg</span><span class="p">):</span>
+    <span class="n">mbf_mb_ac</span><span class="o">.</span><span class="n">send_goal</span><span class="p">(</span><span class="n">mbf_msgs</span><span class="o">.</span><span class="n">MoveBaseGoal</span><span class="p">(</span><span class="n">target_pose</span><span class="o">=</span><span class="n">msg</span><span class="p">))</span>
+    <span class="n">rospy</span><span class="o">.</span><span class="n">logdebug</span><span class="p">(</span><span class="s2">&quot;Relaying move_base_simple/goal pose to mbf&quot;</span><span class="p">)</span>
+
+    <span class="n">mbf_mb_ac</span><span class="o">.</span><span class="n">wait_for_result</span><span class="p">()</span>
+
+    <span class="n">status</span> <span class="o">=</span> <span class="n">mbf_mb_ac</span><span class="o">.</span><span class="n">get_state</span><span class="p">()</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">mbf_mb_ac</span><span class="o">.</span><span class="n">get_result</span><span class="p">()</span>
+
+    <span class="n">rospy</span><span class="o">.</span><span class="n">logdebug</span><span class="p">(</span><span class="s2">&quot;MBF execution completed with result [</span><span class="si">%d</span><span class="s2">]: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">result</span><span class="o">.</span><span class="n">outcome</span><span class="p">,</span> <span class="n">result</span><span class="o">.</span><span class="n">message</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">rospy</span><span class="o">.</span><span class="n">init_node</span><span class="p">(</span><span class="s2">&quot;move_base_relay&quot;</span><span class="p">)</span>
+
+    <span class="c1"># move base flex ation client relays incoming mb goals to mbf</span>
+    <span class="n">mbf_mb_ac</span> <span class="o">=</span> <span class="n">actionlib</span><span class="o">.</span><span class="n">SimpleActionClient</span><span class="p">(</span><span class="s2">&quot;move_base_flex/move_base&quot;</span><span class="p">,</span> <span class="n">mbf_msgs</span><span class="o">.</span><span class="n">MoveBaseAction</span><span class="p">)</span>
+    <span class="n">mbf_mb_ac</span><span class="o">.</span><span class="n">wait_for_server</span><span class="p">(</span><span class="n">rospy</span><span class="o">.</span><span class="n">Duration</span><span class="p">(</span><span class="mi">20</span><span class="p">))</span>
+
+    <span class="c1"># move_base simple topic and action server</span>
+    <span class="n">mb_sg</span> <span class="o">=</span> <span class="n">rospy</span><span class="o">.</span><span class="n">Subscriber</span><span class="p">(</span><span class="s1">&#39;move_base_simple/goal&#39;</span><span class="p">,</span> <span class="n">PoseStamped</span><span class="p">,</span> <span class="n">simple_goal_cb</span><span class="p">)</span>
+
+    <span class="n">rospy</span><span class="o">.</span><span class="n">spin</span><span class="p">()</span>
+</code></pre></div>
+<h3 id="the-code-explained">The Code Explained</h3>
+<p>MoveBase subscriber to handle goal events</p>
+<div class="highlight"><pre><span></span><code><span class="n">mb_sg</span> <span class="o">=</span> <span class="n">rospy</span><span class="o">.</span><span class="n">Subscriber</span><span class="p">(</span><span class="s1">&#39;move_base_simple/goal&#39;</span><span class="p">,</span> <span class="n">PoseStamped</span><span class="p">,</span> <span class="n">simple_goal_cb</span><span class="p">)</span>
+</code></pre></div>
+<p>MoveBase expects goal Messages (<code>geometry_msgs/Pose</code>) on topic <code>move_base_simple/goal</code>. The subscriber callback <code>simple_goal_cb</code> handles the <code>mbf_msgs.MoveBaseAction</code> ROS Action Client. The Move Base Flex SimpleActionServer is launched from within Move Base Flex.</p>
+<p><div class="highlight"><pre><span></span><code><span class="n">mbf_mb_ac</span> <span class="o">=</span> <span class="n">actionlib</span><span class="o">.</span><span class="n">SimpleActionClient</span><span class="p">(</span><span class="s2">&quot;move_base_flex/move_base&quot;</span><span class="p">,</span> <span class="n">mbf_msgs</span><span class="o">.</span><span class="n">MoveBaseAction</span><span class="p">)</span>
+<span class="o">...</span>
+
+<span class="k">def</span> <span class="nf">simple_goal_cb</span><span class="p">(</span><span class="n">msg</span><span class="p">):</span>
+    <span class="n">mbf_mb_ac</span><span class="o">.</span><span class="n">send_goal</span><span class="p">(</span><span class="n">mbf_msgs</span><span class="o">.</span><span class="n">MoveBaseGoal</span><span class="p">(</span><span class="n">target_pose</span><span class="o">=</span><span class="n">msg</span><span class="p">))</span>
+</code></pre></div>
+and relays the MoveBaseAction to the Move Base Flex action client!</p>
+<p>At this stage, we are using the global planner and local planner defined in <a href="https://github.com/uos/mbf_tutorials/blob/master/beginner/param/move_base.yaml">move_base.yml</a>.</p>
+<h2 id="a-relay-with-more-control">A Relay with more control</h2>
+<p>While the first example allows you to relay messages to Move Base Flex, the only way to reach goals is by setting a 2D Navigation Goal via RViz, which can be limiting. This examples allows you to send goals directly from a ROS node.</p>
+<h3 id="code_1">Code</h3>
+<div class="tabbed-set" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><label for="__tabbed_1_1">Server</label><div class="tabbed-content">
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">actionlib</span>
+<span class="kn">import</span> <span class="nn">rospy</span>
+<span class="kn">import</span> <span class="nn">mbf_msgs.msg</span> <span class="k">as</span> <span class="nn">mbf_msgs</span>
+<span class="kn">import</span> <span class="nn">move_base_msgs.msg</span> <span class="k">as</span> <span class="nn">mb_msgs</span>
+
+<span class="k">def</span> <span class="nf">mb_execute_cb</span><span class="p">(</span><span class="n">msg</span><span class="p">):</span>
+    <span class="n">mbf_mb_ac</span><span class="o">.</span><span class="n">send_goal</span><span class="p">(</span><span class="n">mbf_msgs</span><span class="o">.</span><span class="n">MoveBaseGoal</span><span class="p">(</span><span class="n">target_pose</span><span class="o">=</span><span class="n">msg</span><span class="o">.</span><span class="n">target_pose</span><span class="p">),</span>
+                        <span class="n">feedback_cb</span><span class="o">=</span><span class="n">mbf_feedback_cb</span><span class="p">)</span>
+
+    <span class="n">rospy</span><span class="o">.</span><span class="n">logdebug</span><span class="p">(</span><span class="s2">&quot;Relaying move_base goal to mbf&quot;</span><span class="p">)</span>
+    <span class="n">mbf_mb_ac</span><span class="o">.</span><span class="n">wait_for_result</span><span class="p">()</span>
+
+    <span class="n">status</span> <span class="o">=</span> <span class="n">mbf_mb_ac</span><span class="o">.</span><span class="n">get_state</span><span class="p">()</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">mbf_mb_ac</span><span class="o">.</span><span class="n">get_result</span><span class="p">()</span>
+
+    <span class="n">rospy</span><span class="o">.</span><span class="n">logdebug</span><span class="p">(</span><span class="s2">&quot;MBF execution completed with result [</span><span class="si">%d</span><span class="s2">]: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">result</span><span class="o">.</span><span class="n">outcome</span><span class="p">,</span> <span class="n">result</span><span class="o">.</span><span class="n">message</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">result</span><span class="o">.</span><span class="n">outcome</span> <span class="o">==</span> <span class="n">mbf_msgs</span><span class="o">.</span><span class="n">MoveBaseResult</span><span class="o">.</span><span class="n">SUCCESS</span><span class="p">:</span>
+        <span class="n">mb_as</span><span class="o">.</span><span class="n">set_succeeded</span><span class="p">(</span><span class="n">mb_msgs</span><span class="o">.</span><span class="n">MoveBaseResult</span><span class="p">(),</span> <span class="s2">&quot;Goal reached.&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">mb_as</span><span class="o">.</span><span class="n">set_aborted</span><span class="p">(</span><span class="n">mb_msgs</span><span class="o">.</span><span class="n">MoveBaseResult</span><span class="p">(),</span> <span class="n">result</span><span class="o">.</span><span class="n">message</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">mbf_feedback_cb</span><span class="p">(</span><span class="n">feedback</span><span class="p">):</span>
+    <span class="n">mb_as</span><span class="o">.</span><span class="n">publish_feedback</span><span class="p">(</span><span class="n">mb_msgs</span><span class="o">.</span><span class="n">MoveBaseFeedback</span><span class="p">(</span><span class="n">base_position</span><span class="o">=</span><span class="n">feedback</span><span class="o">.</span><span class="n">current_pose</span><span class="p">))</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">rospy</span><span class="o">.</span><span class="n">init_node</span><span class="p">(</span><span class="s2">&quot;move_base&quot;</span><span class="p">)</span>
+
+    <span class="c1"># move_base_flex get_path and move_base action clients</span>
+    <span class="n">mbf_mb_ac</span> <span class="o">=</span> <span class="n">actionlib</span><span class="o">.</span><span class="n">SimpleActionClient</span><span class="p">(</span><span class="s2">&quot;move_base_flex/move_base&quot;</span><span class="p">,</span> <span class="n">mbf_msgs</span><span class="o">.</span><span class="n">MoveBaseAction</span><span class="p">)</span>
+    <span class="n">mbf_mb_ac</span><span class="o">.</span><span class="n">wait_for_server</span><span class="p">(</span><span class="n">rospy</span><span class="o">.</span><span class="n">Duration</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
+
+    <span class="n">mb_as</span> <span class="o">=</span> <span class="n">actionlib</span><span class="o">.</span><span class="n">SimpleActionServer</span><span class="p">(</span><span class="s1">&#39;move_base&#39;</span><span class="p">,</span> <span class="n">mb_msgs</span><span class="o">.</span><span class="n">MoveBaseAction</span><span class="p">,</span> <span class="n">mb_execute_cb</span><span class="p">,</span> <span class="n">auto_start</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">mb_as</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+
+    <span class="n">rospy</span><span class="o">.</span><span class="n">spin</span><span class="p">()</span>
+</code></pre></div>
+</div>
+<input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><label for="__tabbed_1_2">Client</label><div class="tabbed-content">
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">rospy</span>
+<span class="kn">import</span> <span class="nn">actionlib</span>
+<span class="kn">import</span> <span class="nn">mbf_msgs.msg</span> <span class="k">as</span> <span class="nn">mbf_msgs</span>
+<span class="kn">import</span> <span class="nn">move_base_msgs.msg</span> <span class="k">as</span> <span class="nn">mb_msgs</span>
+<span class="kn">from</span> <span class="nn">actionlib_msgs.msg</span> <span class="kn">import</span> <span class="n">GoalStatus</span>
+
+<span class="k">def</span> <span class="nf">create_goal</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">,</span> <span class="n">xx</span><span class="p">,</span> <span class="n">yy</span><span class="p">,</span> <span class="n">zz</span><span class="p">,</span> <span class="n">ww</span><span class="p">):</span>
+    <span class="n">goal</span> <span class="o">=</span> <span class="n">mb_msgs</span><span class="o">.</span><span class="n">MoveBaseGoal</span><span class="p">()</span>
+    <span class="o">...</span>
+    <span class="n">goal</span><span class="o">.</span><span class="n">target_pose</span><span class="o">.</span><span class="n">pose</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">x</span>
+    <span class="n">goal</span><span class="o">.</span><span class="n">target_pose</span><span class="o">.</span><span class="n">pose</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">y</span>
+    <span class="n">goal</span><span class="o">.</span><span class="n">target_pose</span><span class="o">.</span><span class="n">pose</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">z</span> <span class="o">=</span> <span class="n">z</span>
+    <span class="o">...</span>
+    <span class="k">return</span> <span class="n">goal</span>
+
+<span class="k">def</span> <span class="nf">move</span><span class="p">(</span><span class="n">goal</span><span class="p">):</span>
+    <span class="n">client</span><span class="o">.</span><span class="n">send_goal</span><span class="p">(</span><span class="n">goal</span><span class="p">)</span>
+    <span class="n">client</span><span class="o">.</span><span class="n">wait_for_result</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">client</span><span class="o">.</span><span class="n">get_state</span><span class="p">()</span> <span class="o">==</span> <span class="n">GoalStatus</span><span class="o">.</span><span class="n">SUCCEEDED</span>
+
+
+<span class="k">def</span> <span class="nf">drive_circle</span><span class="p">():</span>
+    <span class="n">goals</span> <span class="o">=</span> <span class="p">[</span>   <span class="n">create_goal</span><span class="p">(</span><span class="o">-</span><span class="mf">1.75</span><span class="p">,</span> <span class="mf">0.74</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.539</span><span class="p">,</span> <span class="mf">0.843</span><span class="p">),</span>
+                <span class="n">create_goal</span><span class="p">(</span><span class="o">-</span><span class="mf">0.36</span><span class="p">,</span> <span class="mf">1.92</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.020</span><span class="p">,</span> <span class="mf">0.999</span><span class="p">),</span>
+                <span class="o">...</span>
+    <span class="p">]</span>
+
+    <span class="k">for</span> <span class="n">goal</span> <span class="ow">in</span> <span class="n">goals</span><span class="p">:</span>
+        <span class="n">rospy</span><span class="o">.</span><span class="n">loginfo</span><span class="p">(</span><span class="s2">&quot;Attempting to drive to </span><span class="si">%s</span><span class="s2"> </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">goal</span><span class="o">.</span><span class="n">target_pose</span><span class="o">.</span><span class="n">pose</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">goal</span><span class="o">.</span><span class="n">target_pose</span><span class="o">.</span><span class="n">pose</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">move</span><span class="p">(</span><span class="n">goal</span><span class="p">):</span>
+            <span class="k">return</span> <span class="kc">False</span>
+
+    <span class="k">return</span> <span class="kc">True</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">rospy</span><span class="o">.</span><span class="n">init_node</span><span class="p">(</span><span class="s1">&#39;mb_relay_client&#39;</span><span class="p">)</span>
+
+        <span class="n">client</span> <span class="o">=</span> <span class="n">actionlib</span><span class="o">.</span><span class="n">SimpleActionClient</span><span class="p">(</span><span class="s1">&#39;move_base&#39;</span><span class="p">,</span> <span class="n">mb_msgs</span><span class="o">.</span><span class="n">MoveBaseAction</span><span class="p">)</span>
+        <span class="n">client</span><span class="o">.</span><span class="n">wait_for_server</span><span class="p">(</span><span class="n">rospy</span><span class="o">.</span><span class="n">Duration</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
+        <span class="n">rospy</span><span class="o">.</span><span class="n">loginfo</span><span class="p">(</span><span class="s2">&quot;Connected to SimpleActionServer &#39;move_base&#39;&quot;</span><span class="p">)</span>
+
+        <span class="n">result</span> <span class="o">=</span> <span class="n">drive_circle</span><span class="p">()</span>
+        <span class="n">rospy</span><span class="o">.</span><span class="n">loginfo</span><span class="p">(</span><span class="s2">&quot;Drove circle with result: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">result</span><span class="p">)</span>
+
+    <span class="k">except</span> <span class="n">rospy</span><span class="o">.</span><span class="n">ROSInterruptException</span><span class="p">:</span>
+        <span class="n">rospy</span><span class="o">.</span><span class="n">logerror</span><span class="p">(</span><span class="s2">&quot;program interrupted before completion&quot;</span><span class="p">)</span>
+</code></pre></div>
+</div>
+</div>
+<h3 id="the-code-explained_1">The Code Explained</h3>
+<p>On the server side, we start a standard Move Base Action Server, and connect a Move Base Flex Action Client to the default Move Base Flex Action Server.</p>
+<div class="highlight"><pre><span></span><code><span class="n">mbf_mb_ac</span> <span class="o">=</span> <span class="n">actionlib</span><span class="o">.</span><span class="n">SimpleActionClient</span><span class="p">(</span><span class="s2">&quot;move_base_flex/move_base&quot;</span><span class="p">,</span> <span class="n">mbf_msgs</span><span class="o">.</span><span class="n">MoveBaseAction</span><span class="p">)</span>
+<span class="n">mbf_mb_ac</span><span class="o">.</span><span class="n">wait_for_server</span><span class="p">(</span><span class="n">rospy</span><span class="o">.</span><span class="n">Duration</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
+
+<span class="n">mb_as</span> <span class="o">=</span> <span class="n">actionlib</span><span class="o">.</span><span class="n">SimpleActionServer</span><span class="p">(</span><span class="s1">&#39;move_base&#39;</span><span class="p">,</span> <span class="n">mb_msgs</span><span class="o">.</span><span class="n">MoveBaseAction</span><span class="p">,</span> <span class="n">mb_execute_cb</span><span class="p">,</span> <span class="n">auto_start</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</code></pre></div>
+<p>We then relay the goal in the callback of the Move Base Action Server, like in the first subriber callback example</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">mb_execute_cb</span><span class="p">(</span><span class="n">msg</span><span class="p">):</span>
+    <span class="n">mbf_mb_ac</span><span class="o">.</span><span class="n">send_goal</span><span class="p">(</span><span class="n">mbf_msgs</span><span class="o">.</span><span class="n">MoveBaseGoal</span><span class="p">(</span><span class="n">target_pose</span><span class="o">=</span><span class="n">msg</span><span class="o">.</span><span class="n">target_pose</span><span class="p">),</span>
+                        <span class="n">feedback_cb</span><span class="o">=</span><span class="n">mbf_feedback_cb</span><span class="p">)</span>
+</code></pre></div>
+<p>On the client side, we simply connect to the Move Base Action Server, and send a goal, which is then relayed in the above function.</p>
+<div class="highlight"><pre><span></span><code><span class="n">client</span> <span class="o">=</span> <span class="n">actionlib</span><span class="o">.</span><span class="n">SimpleActionClient</span><span class="p">(</span><span class="s1">&#39;move_base&#39;</span><span class="p">,</span> <span class="n">mb_msgs</span><span class="o">.</span><span class="n">MoveBaseAction</span><span class="p">)</span>
+<span class="n">client</span><span class="o">.</span><span class="n">wait_for_server</span><span class="p">(</span><span class="n">rospy</span><span class="o">.</span><span class="n">Duration</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
+<span class="n">rospy</span><span class="o">.</span><span class="n">loginfo</span><span class="p">(</span><span class="s2">&quot;Connected to SimpleActionServer &#39;move_base&#39;&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p>In this example, the robot will follow a (rough) circular path around the turtlebot3_gazebo world. A goal is created like this:</p>
+<div class="highlight"><pre><span></span><code><span class="n">goal</span> <span class="o">=</span> <span class="n">mb_msgs</span><span class="o">.</span><span class="n">MoveBaseGoal</span><span class="p">()</span>
+<span class="n">goal</span><span class="o">.</span><span class="n">target_pose</span><span class="o">.</span><span class="n">header</span><span class="o">.</span><span class="n">frame_id</span> <span class="o">=</span> <span class="s2">&quot;map&quot;</span>
+<span class="n">goal</span><span class="o">.</span><span class="n">target_pose</span><span class="o">.</span><span class="n">header</span><span class="o">.</span><span class="n">stamp</span> <span class="o">=</span> <span class="n">rospy</span><span class="o">.</span><span class="n">Time</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
+<span class="n">goal</span><span class="o">.</span><span class="n">target_pose</span><span class="o">.</span><span class="n">pose</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">x</span>
+<span class="n">goal</span><span class="o">.</span><span class="n">target_pose</span><span class="o">.</span><span class="n">pose</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">y</span>
+<span class="n">goal</span><span class="o">.</span><span class="n">target_pose</span><span class="o">.</span><span class="n">pose</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">z</span> <span class="o">=</span> <span class="n">z</span>
+<span class="n">goal</span><span class="o">.</span><span class="n">target_pose</span><span class="o">.</span><span class="n">pose</span><span class="o">.</span><span class="n">orientation</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">xx</span>
+<span class="n">goal</span><span class="o">.</span><span class="n">target_pose</span><span class="o">.</span><span class="n">pose</span><span class="o">.</span><span class="n">orientation</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">yy</span>
+<span class="n">goal</span><span class="o">.</span><span class="n">target_pose</span><span class="o">.</span><span class="n">pose</span><span class="o">.</span><span class="n">orientation</span><span class="o">.</span><span class="n">z</span> <span class="o">=</span> <span class="n">zz</span>
+<span class="n">goal</span><span class="o">.</span><span class="n">target_pose</span><span class="o">.</span><span class="n">pose</span><span class="o">.</span><span class="n">orientation</span><span class="o">.</span><span class="n">w</span> <span class="o">=</span> <span class="n">ww</span>
+<span class="k">return</span> <span class="n">goal</span>
+</code></pre></div>
+<p>and sent to the action server:</p>
+<div class="highlight"><pre><span></span><code><span class="n">client</span><span class="o">.</span><span class="n">send_goal</span><span class="p">(</span><span class="n">goal</span><span class="p">)</span>
+<span class="n">client</span><span class="o">.</span><span class="n">wait_for_result</span><span class="p">()</span>
+<span class="k">return</span> <span class="n">client</span><span class="o">.</span><span class="n">get_state</span><span class="p">()</span> <span class="o">==</span> <span class="n">GoalStatus</span><span class="o">.</span><span class="n">SUCCEEDED</span>
+</code></pre></div>
+<h3 id="run-the-example">Run the example</h3>
+<p>Launch gazebo</p>
+<div class="highlight"><pre><span></span><code><span class="nb">export</span> <span class="nv">TURTLEBOT3_MODEL</span><span class="o">=</span>burger
+roslaunch turtlebot3_gazebo turtlebot3_world.launch
+</code></pre></div>
+<p>as well as the server </p>
+<div class="highlight"><pre><span></span><code><span class="nb">export</span> <span class="nv">TURTLEBOT3_MODEL</span><span class="o">=</span>burger
+roslaunch turtlebot3_mbf amcl_demo_relay_server.launch
+</code></pre></div>
+<p>and client node to send the goals!</p>
+<div class="highlight"><pre><span></span><code>rosrun turtlebot3_mbf mb_relay_client.py
+</code></pre></div>
+<p><br></p>
+<h3 id="the-result">The Result</h3>
+<p>Open RViz with</p>
+<div class="highlight"><pre><span></span><code>roslaunch turtlebot3_mbf rviz.launch
+</code></pre></div>
+<p><img alt="" src="../../../img/turtlebot_mbf_circle.gif" /></p>
+<p><br></p>
+<p>The full source code can be found <a href="https://github.com/uos/mbf_tutorials/tree/master/beginner">here</a>.</p>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        <a href="../welcome/" class="md-footer__link md-footer__link--prev" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Welcome
+            </div>
+          </div>
+        </a>
+      
+      
+        <a href="../beyond_relay/" class="md-footer__link md-footer__link--next" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Beyond the Relay - Move Base Flex
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.instant", "navigation.tabs"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "../../../assets/javascripts/workers/search.fb4a9340.min.js", "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.a1c7c35e.min.js"></script>
+      
+    
+  </body>
+</html>
