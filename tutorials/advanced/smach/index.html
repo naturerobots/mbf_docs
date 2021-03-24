@@ -212,7 +212,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../beginner/welcome/" class="md-tabs__link md-tabs__link--active">
+      <a href="../../beginner/overview/" class="md-tabs__link md-tabs__link--active">
         Tutorials
       </a>
     </li>
@@ -417,8 +417,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../../beginner/welcome/" class="md-nav__link">
-        Welcome
+      <a href="../../beginner/overview/" class="md-nav__link">
+        Overview
       </a>
     </li>
   
@@ -545,8 +545,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../welcome/" class="md-nav__link">
-        Welcome
+      <a href="../overview/" class="md-nav__link">
+        Overview
       </a>
     </li>
   
@@ -599,12 +599,58 @@
     The Code Explained
   </a>
   
+    <nav class="md-nav" aria-label="The Code Explained">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get_path-state" class="md-nav__link">
+    GET_PATH State
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exe_path-state" class="md-nav__link">
+    EXE_PATH State
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#userdata" class="md-nav__link">
+    Userdata
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#run-the-smach" class="md-nav__link">
+    Run the SMACH
+  </a>
+  
 </li>
       
     </ul>
   
 </nav>
       
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../continuous_replanning/" class="md-nav__link">
+        Continuous Replanning
+      </a>
     </li>
   
 
@@ -620,7 +666,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../expert/" class="md-nav__link">
+      <a href="../../expert/overview/" class="md-nav__link">
         Expert
       </a>
     </li>
@@ -698,6 +744,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../concepts/at_a_glance/" class="md-nav__link">
+        At A Glance
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../concepts/navigation_servers/" class="md-nav__link">
         Navigation Servers
       </a>
@@ -747,6 +805,40 @@
     The Code Explained
   </a>
   
+    <nav class="md-nav" aria-label="The Code Explained">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get_path-state" class="md-nav__link">
+    GET_PATH State
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exe_path-state" class="md-nav__link">
+    EXE_PATH State
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#userdata" class="md-nav__link">
+    Userdata
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#run-the-smach" class="md-nav__link">
+    Run the SMACH
+  </a>
+  
 </li>
       
     </ul>
@@ -768,12 +860,12 @@
                 
                 <h1 id="writing-a-smach">Writing a SMACH</h1>
 <p>This Tutorial will walk you through writing a simple SMACH. SMACH stands for <strong>S</strong>tate <strong>Mach</strong>ine and is an important concept in the ROS Navigation ecosystem. You can check out the official <a href="https://wiki.ros.org/smach/Tutorials">ROS SMACH Tutorials</a>, as well.</p>
-<p>The tutorials up to this point focussed heavily on goal based actions. The following SMACH tutorial will show you how to use Move Base Flex to perform the planning yourself, giving you way more flexibility.</p>
+<p>The following SMACH tutorial will perform the circular path you already know from previous tutorials by using path planning with the <code>/mbf_msgs/GetPath.action</code> and execution from within a simple SMACH with <code>/mbf_msgs/ExePath.action</code>.</p>
 <h2 id="code">Code</h2>
-<p>TODO</p>
 <div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">rospy</span>
 <span class="kn">import</span> <span class="nn">smach</span>
 <span class="kn">import</span> <span class="nn">smach_ros</span>
+<span class="kn">import</span> <span class="nn">threading</span>
 
 <span class="kn">from</span> <span class="nn">geometry_msgs.msg</span> <span class="kn">import</span> <span class="n">PoseStamped</span>
 <span class="kn">from</span> <span class="nn">nav_msgs.msg</span> <span class="kn">import</span> <span class="n">Path</span>
@@ -781,6 +873,7 @@
 <span class="kn">from</span> <span class="nn">mbf_msgs.msg</span> <span class="kn">import</span> <span class="n">ExePathAction</span>
 <span class="kn">from</span> <span class="nn">mbf_msgs.msg</span> <span class="kn">import</span> <span class="n">GetPathAction</span>
 <span class="kn">from</span> <span class="nn">mbf_msgs.msg</span> <span class="kn">import</span> <span class="n">RecoveryAction</span>
+
 
 <span class="k">def</span> <span class="nf">create_pose</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">,</span> <span class="n">xx</span><span class="p">,</span> <span class="n">yy</span><span class="p">,</span> <span class="n">zz</span><span class="p">,</span> <span class="n">ww</span><span class="p">):</span>
     <span class="n">pose</span> <span class="o">=</span> <span class="n">PoseStamped</span><span class="p">()</span>
@@ -828,7 +921,7 @@
     <span class="n">sm</span> <span class="o">=</span> <span class="n">smach</span><span class="o">.</span><span class="n">StateMachine</span><span class="p">(</span><span class="n">outcomes</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;succeeded&#39;</span><span class="p">,</span> <span class="s1">&#39;aborted&#39;</span><span class="p">,</span> <span class="s1">&#39;preempted&#39;</span><span class="p">])</span>
 
     <span class="c1"># Define userdata</span>
-    <span class="n">sm</span><span class="o">.</span><span class="n">userdata</span><span class="o">.</span><span class="n">goal</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">sm</span><span class="o">.</span><span class="n">userdata</span><span class="o">.</span><span class="n">target_pose</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="n">sm</span><span class="o">.</span><span class="n">userdata</span><span class="o">.</span><span class="n">path</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="n">sm</span><span class="o">.</span><span class="n">userdata</span><span class="o">.</span><span class="n">error</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="n">sm</span><span class="o">.</span><span class="n">userdata</span><span class="o">.</span><span class="n">clear_costmap_flag</span> <span class="o">=</span> <span class="kc">False</span>
@@ -837,7 +930,11 @@
     <span class="k">with</span> <span class="n">sm</span><span class="p">:</span>
         <span class="c1"># path callback</span>
         <span class="k">def</span> <span class="nf">get_path_callback</span><span class="p">(</span><span class="n">userdata</span><span class="p">,</span> <span class="n">goal</span><span class="p">):</span>
-            <span class="n">goal</span><span class="o">.</span><span class="n">target_pose</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">target_poses</span><span class="p">)</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">goal</span><span class="o">.</span><span class="n">target_pose</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">target_poses</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">StopIteration</span><span class="p">:</span>
+                <span class="n">rospy</span><span class="o">.</span><span class="n">logwarn</span><span class="p">(</span><span class="s2">&quot;Reached last target pose&quot;</span><span class="p">)</span>
+                <span class="n">rospy</span><span class="o">.</span><span class="n">signal_shutdown</span><span class="p">(</span><span class="s2">&quot;Last goal reached. Shutting down&quot;</span><span class="p">)</span>
 
         <span class="c1"># Get path</span>
         <span class="n">smach</span><span class="o">.</span><span class="n">StateMachine</span><span class="o">.</span><span class="n">add</span><span class="p">(</span>
@@ -853,13 +950,10 @@
                 <span class="s1">&#39;succeeded&#39;</span><span class="p">:</span> <span class="s1">&#39;EXE_PATH&#39;</span><span class="p">,</span>
                 <span class="s1">&#39;aborted&#39;</span><span class="p">:</span> <span class="s1">&#39;aborted&#39;</span><span class="p">,</span>
                 <span class="s1">&#39;preempted&#39;</span><span class="p">:</span> <span class="s1">&#39;preempted&#39;</span>
-            <span class="p">},</span>
-            <span class="n">remapping</span><span class="o">=</span><span class="p">{</span>
-                <span class="s1">&#39;target_pose&#39;</span><span class="p">:</span> <span class="s1">&#39;goal&#39;</span>
             <span class="p">}</span>
         <span class="p">)</span>
 
-        <span class="k">def</span> <span class="nf">exe_path_callback</span><span class="p">(</span><span class="n">userdata</span><span class="p">,</span> <span class="n">goal</span><span class="p">):</span>
+        <span class="k">def</span> <span class="nf">path_callback</span><span class="p">(</span><span class="n">userdata</span><span class="p">,</span> <span class="n">goal</span><span class="p">):</span>
             <span class="n">target_pose</span> <span class="o">=</span> <span class="n">goal</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">poses</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">pose</span>
             <span class="n">rospy</span><span class="o">.</span><span class="n">loginfo</span><span class="p">(</span><span class="s2">&quot;Attempting to reach (</span><span class="si">%1.3f</span><span class="s2">, </span><span class="si">%1.3f</span><span class="s2">)&quot;</span><span class="p">,</span> <span class="n">target_pose</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">target_pose</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
 
@@ -869,7 +963,7 @@
             <span class="n">smach_ros</span><span class="o">.</span><span class="n">SimpleActionState</span><span class="p">(</span>
                 <span class="s1">&#39;/move_base_flex/exe_path&#39;</span><span class="p">,</span>
                 <span class="n">ExePathAction</span><span class="p">,</span>
-                <span class="n">goal_cb</span><span class="o">=</span><span class="n">exe_path_callback</span><span class="p">,</span>
+                <span class="n">goal_cb</span><span class="o">=</span><span class="n">path_callback</span><span class="p">,</span>
                 <span class="n">goal_slots</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;path&#39;</span><span class="p">]</span>
             <span class="p">),</span>
             <span class="n">transitions</span><span class="o">=</span><span class="p">{</span>
@@ -880,13 +974,113 @@
         <span class="p">)</span>
 
     <span class="c1"># Execute SMACH plan</span>
-    <span class="n">sm</span><span class="o">.</span><span class="n">execute</span><span class="p">()</span>
+    <span class="c1"># Create a thread to execute the smach container</span>
+    <span class="n">smach_thread</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">sm</span><span class="o">.</span><span class="n">execute</span><span class="p">)</span>
+    <span class="n">smach_thread</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+
+    <span class="c1"># Wait for ctrl-c</span>
+    <span class="n">rospy</span><span class="o">.</span><span class="n">spin</span><span class="p">()</span>
+
+    <span class="c1"># Request the container to preempt</span>
+    <span class="n">sm</span><span class="o">.</span><span class="n">request_preempt</span><span class="p">()</span>
+
+    <span class="c1"># Block until everything is preempted </span>
+    <span class="n">smach_thread</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
 
 <span class="k">if</span> <span class="vm">__name__</span><span class="o">==</span><span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
     <span class="n">main</span><span class="p">()</span>
 </code></pre></div>
 <h2 id="the-code-explained">The Code Explained</h2>
-<p>TODO</p>
+<p>Let's define the State Machine with three outcomes: <code>succeeded</code>, <code>aborted</code> and <code>preempted</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Create SMACH state machine</span>
+<span class="n">sm</span> <span class="o">=</span> <span class="n">smach</span><span class="o">.</span><span class="n">StateMachine</span><span class="p">(</span><span class="n">outcomes</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;succeeded&#39;</span><span class="p">,</span> <span class="s1">&#39;aborted&#39;</span><span class="p">,</span> <span class="s1">&#39;preempted&#39;</span><span class="p">])</span>
+</code></pre></div>
+<p>Next, we need to add states to the SMACH. In this simple case, all we need is a state to handle path planning, <code>GET_PATH</code> and another to handle the path execution, <code>EXE_PATH</code>.</p>
+<p>The states use <a href="https://github.com/ros/executive_smach"><code>smach_ros</code></a></p>
+<blockquote>
+<p>The smach_ros package contains extensions for the SMACH library to integrate it tightly with ROS. For example, SMACH-ROS can call ROS services, listen to ROS topics, and integrate with actionlib both as a client, and a provider of action servers. SMACH is a new library that takes advantage of very old concepts in order to quickly create robust robot behavior with maintainable and modular code. </p>
+</blockquote>
+<h3 id="get_path-state">GET_PATH State</h3>
+<div class="highlight"><pre><span></span><code><span class="n">smach</span><span class="o">.</span><span class="n">StateMachine</span><span class="o">.</span><span class="n">add</span><span class="p">(</span>
+    <span class="s1">&#39;GET_PATH&#39;</span><span class="p">,</span>
+    <span class="n">smach_ros</span><span class="o">.</span><span class="n">SimpleActionState</span><span class="p">(</span>
+        <span class="s1">&#39;/move_base_flex/get_path&#39;</span><span class="p">,</span>
+        <span class="n">GetPathAction</span><span class="p">,</span>
+        <span class="n">goal_cb</span><span class="o">=</span><span class="n">get_path_callback</span><span class="p">,</span>
+        <span class="n">goal_slots</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;target_pose&#39;</span><span class="p">],</span>
+        <span class="n">result_slots</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;path&#39;</span><span class="p">]</span>
+    <span class="p">),</span>
+    <span class="n">transitions</span><span class="o">=</span><span class="p">{</span>
+        <span class="s1">&#39;succeeded&#39;</span><span class="p">:</span> <span class="s1">&#39;EXE_PATH&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;aborted&#39;</span><span class="p">:</span> <span class="s1">&#39;aborted&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;preempted&#39;</span><span class="p">:</span> <span class="s1">&#39;preempted&#39;</span>
+    <span class="p">},</span>
+    <span class="n">remapping</span><span class="o">=</span><span class="p">{</span>
+        <span class="s1">&#39;target_pose&#39;</span><span class="p">:</span> <span class="s1">&#39;goal&#39;</span>
+    <span class="p">}</span>
+<span class="p">)</span>
+</code></pre></div>
+<p>In our case, we need access to</p>
+<ul>
+<li>the goal, to tell out robot about the next waypoint: <code>goal_slots=['target_pose']</code></li>
+<li>the path, to tell the next state which path to execute: <code>result_slots=['path']</code></li>
+</ul>
+<p>While the goal_slots define the input values, result_slots indicate the output values.</p>
+<p>The seconds parameter tells the SMACH which action server to use to receive a path: <code>/move_base_flex/get_path</code> with the <code>mbf_msgs/GetPathAction</code> we already know from the beginner tutorials.</p>
+<p>The <code>transitions</code> parameters configures which states are visited next, depending on the result of the state.</p>
+<p><strong>Note</strong>: If goals/results and userdata are named differently, you can change them with the remapping argument (not necessary in our case). e.g.:</p>
+<div class="highlight"><pre><span></span><code><span class="n">remapping</span><span class="o">=</span><span class="p">{</span>
+    <span class="s1">&#39;target_pose&#39;</span><span class="p">:</span> <span class="s1">&#39;goal&#39;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Next use this callback to set the goal. After we set the goal, the state calls the <code>/move_base_flex/get_path</code> action server, and relays the result to the next state (Shown shortly).</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">get_path_callback</span><span class="p">(</span><span class="n">userdata</span><span class="p">,</span> <span class="n">goal</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">goal</span><span class="o">.</span><span class="n">target_pose</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">target_poses</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">StopIteration</span><span class="p">:</span>
+        <span class="n">rospy</span><span class="o">.</span><span class="n">logwarn</span><span class="p">(</span><span class="s2">&quot;Reached last target pose&quot;</span><span class="p">)</span>
+        <span class="n">rospy</span><span class="o">.</span><span class="n">signal_shutdown</span><span class="p">(</span><span class="s2">&quot;Last goal reached. Shutting down&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="exe_path-state"><code>EXE_PATH</code> State</h3>
+<div class="highlight"><pre><span></span><code><span class="n">smach</span><span class="o">.</span><span class="n">StateMachine</span><span class="o">.</span><span class="n">add</span><span class="p">(</span>
+    <span class="s1">&#39;EXE_PATH&#39;</span><span class="p">,</span>
+    <span class="n">smach_ros</span><span class="o">.</span><span class="n">SimpleActionState</span><span class="p">(</span>
+        <span class="s1">&#39;/move_base_flex/exe_path&#39;</span><span class="p">,</span>
+        <span class="n">ExePathAction</span><span class="p">,</span>
+        <span class="n">goal_cb</span><span class="o">=</span><span class="n">path_callback</span><span class="p">,</span>
+        <span class="n">goal_slots</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;path&#39;</span><span class="p">]</span>
+    <span class="p">),</span>
+    <span class="n">transitions</span><span class="o">=</span><span class="p">{</span>
+        <span class="s1">&#39;succeeded&#39;</span><span class="p">:</span> <span class="s1">&#39;GET_PATH&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;aborted&#39;</span><span class="p">:</span> <span class="s1">&#39;aborted&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;preempted&#39;</span><span class="p">:</span> <span class="s1">&#39;preempted&#39;</span>
+    <span class="p">}</span>
+<span class="p">)</span>
+</code></pre></div>
+<p>the <code>EXE_PATH</code> state receives a path via userdata an is declared with <code>goal_slots=['path']</code>. On success, the path will transition to the <code>GET_PATH</code> state and will try to plan a new path from there.</p>
+<p>The <code>exe_path_callback</code> is used for verbosity only</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">exe_path_callback</span><span class="p">(</span><span class="n">userdata</span><span class="p">,</span> <span class="n">goal</span><span class="p">):</span>
+        <span class="n">target_pose</span> <span class="o">=</span> <span class="n">goal</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">poses</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">pose</span>
+        <span class="n">rospy</span><span class="o">.</span><span class="n">loginfo</span><span class="p">(</span><span class="s2">&quot;Attempting to reach (</span><span class="si">%1.3f</span><span class="s2">, </span><span class="si">%1.3f</span><span class="s2">)&quot;</span><span class="p">,</span> <span class="n">target_pose</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">target_pose</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="userdata">Userdata</h3>
+<p>Finally, the result and goal slots we used to determine how the data will be passed between states, need to be set in the <a href="http://wiki.ros.org/smach/Tutorials/User%20Data">userdata</a>:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Define userdata</span>
+<span class="n">sm</span><span class="o">.</span><span class="n">userdata</span><span class="o">.</span><span class="n">goal</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="n">sm</span><span class="o">.</span><span class="n">userdata</span><span class="o">.</span><span class="n">path</span> <span class="o">=</span> <span class="kc">None</span>
+</code></pre></div>
+<h2 id="run-the-smach">Run the SMACH</h2>
+<p>Launch gazebo</p>
+<div class="highlight"><pre><span></span><code><span class="nb">export</span> <span class="nv">TURTLEBOT3_MODEL</span><span class="o">=</span>burger
+roslaunch turtlebot3_gazebo turtlebot3_world.launch
+</code></pre></div>
+<p>as well as Move Base Flex</p>
+<div class="highlight"><pre><span></span><code><span class="nb">export</span> <span class="nv">TURTLEBOT3_MODEL</span><span class="o">=</span>burger
+roslaunch mbf_advanced amcl_demo_mbf.launch
+</code></pre></div>
+<p>Finally, start the SMACH</p>
+<div class="highlight"><pre><span></span><code>rosrun mbf_advanced circle_smach.py
+</code></pre></div>
                 
               
               
@@ -904,7 +1098,7 @@
   
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
-        <a href="../welcome/" class="md-footer__link md-footer__link--prev" rel="prev">
+        <a href="../overview/" class="md-footer__link md-footer__link--prev" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -913,19 +1107,19 @@
               <span class="md-footer__direction">
                 Previous
               </span>
-              Welcome
+              Overview
             </div>
           </div>
         </a>
       
       
-        <a href="../../expert/" class="md-footer__link md-footer__link--next" rel="next">
+        <a href="../continuous_replanning/" class="md-footer__link md-footer__link--next" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              Expert
+              Continuous Replanning
             </div>
           </div>
           <div class="md-footer__button md-icon">
