@@ -15,7 +15,7 @@ catkin_make
 1. **Basic Navigation** <br> Learn how to move a robot from point a to b with Move Base Flex and RViz. Continue [here](./basic_navigation.md).
 2. **Beyond the Relay** <br> Learn to use the Move Base Flex API directly and leave Move Base behind. Continue [here](./beyond_relay.md).
 3. **Path Planning** <br> Learn how to plan with pose paths instead of goals for greated flexibility. Continue [here](./path_planning.md)
-4. **Parameters and Configuraton** <br> After getting to know a typical planning workflow, learn about parameters and configuration of Move Base Flex. Continue [here](./parameters.md)
+4. **Parameters and Configuraton** <br> After getting to know a typical planning workflow, learn about parameters and configuration of Move Base Flex. Continue [here](./parameters/overview.md)
 
 <br>
 

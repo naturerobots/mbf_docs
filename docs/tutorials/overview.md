@@ -10,7 +10,7 @@ Introduction to the ROS planning stack with Move Base (Flex) and a Turtlebot in 
     * Move Base and its configuration to send your robot to the requested location
     * write a simple SMACH.
 
-    Continue [here](./beginner/welcome.md)
+    Continue [here](./beginner/overview.md)
 
 2. **Advanced** <br> 
 The advanced tutorial will teach you
@@ -19,10 +19,10 @@ The advanced tutorial will teach you
     * Continous Replanning
     * Concurrency Slots for Simultaneous Replanning
 
-    Continue [here]() TODO
+    Continue [here](./advanced/overview.md)
 
 3. **Expert** <br> 
-Multi Robot Navigation with one Move Base Flex Instance. Continue [here](TODO) TODO
+Multi Robot Navigation with one Move Base Flex Instance. Continue [here](./expert/overview.md) TODO 
 
 4. **Writing Move Base Flex Plugins** <br>
 TODO

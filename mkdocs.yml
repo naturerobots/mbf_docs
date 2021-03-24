@@ -26,7 +26,7 @@ nav:
     - Tutorials: tutorials/overview.md
   - Tutorials:
     - Beginner: 
-      - Welcome: tutorials/beginner/welcome.md
+      - Overview: tutorials/beginner/overview.md
       - Basic Navigation: tutorials/beginner/basic_navigation.md
       - Beyond the Relay - Move Base Flex: tutorials/beginner/beyond_relay.md
       - Path Planning: tutorials/beginner/path_planning.md
@@ -34,11 +34,13 @@ nav:
         - Overview: tutorials/beginner/parameters/overview.md
         - MBF Parameters: tutorials/beginner/parameters/mbf_parameters.md
     - Advanced: 
-      - Welcome: tutorials/advanced/welcome.md
+      - Overview: tutorials/advanced/overview.md
       - Writing a simple SMACH: tutorials/advanced/smach.md
-    - Expert: tutorials/expert.md
+      - Continuous Replanning: tutorials/advanced/continuous_replanning.md
+    - Expert: tutorials/expert/overview.md
     - Writing MBF Plugins: tutorials/writing_mbf_plugins.md
     - Mesh Navigation Stack: tutorials/mesh_navigation_stack.md
   - Concepts:
     - Architecture: concepts/architecture.md
+    - At A Glance: concepts/at_a_glance.md
     - Navigation Servers: concepts/navigation_servers.md
