@@ -682,6 +682,18 @@
   
 
           
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced/recovery_behavior/" class="md-nav__link">
+        Recovery Behavior
+      </a>
+    </li>
+  
+
+          
         </ul>
       </nav>
     </li>
@@ -905,15 +917,14 @@ Install dependencies with rosdep (include all tutorials for ease of use)
 <p>From source of workspace: 
 <div class="highlight"><pre><span></span><code><span class="nb">cd</span> ~/catkin_ws/src
 catkin_make -j4 <span class="o">&amp;&amp;</span> <span class="nb">source</span> devel/setup.bash<span class="sb">`</span>
-</code></pre></div>
-Define the Turlebot model you want to use:
+</code></pre></div></p>
+<p>Launch the appropriate gazebo world
 <div class="highlight"><pre><span></span><code><span class="nb">export</span> <span class="nv">TURTLEBOT3_MODEL</span><span class="o">=</span>burger
-</code></pre></div>
-Launch the appropriate gazebo world
-<div class="highlight"><pre><span></span><code>roslaunch turtlebot3_gazebo turtlebot3_world.launch
+roslaunch turtlebot3_gazebo turtlebot3_world.launch
 </code></pre></div>
 Start localization (AMCL)
-<div class="highlight"><pre><span></span><code>roslaunch mbf_beginner amcl_demo_relay_subscriber.launch
+<div class="highlight"><pre><span></span><code><span class="nb">export</span> <span class="nv">TURTLEBOT3_MODEL</span><span class="o">=</span>burger
+roslaunch mbf_beginner amcl_demo_relay_subscriber.launch
 </code></pre></div></p>
 <p>Launch Rviz
 <div class="highlight"><pre><span></span><code>roslaunch mbf_beginner rviz.launch
@@ -927,7 +938,7 @@ Start localization (AMCL)
 <p><img alt="" src="../../../img/demo.gif" /></p>
 <p><br></p>
 <h2 id="what-is-happening-here">What is happening here?</h2>
-<p>We used Move Base Flex by relaying <code>mb_msgs/MoveBaseAction</code> to <code>mbf_msgs/MoveBaseAction</code>. </p>
+<p>We used Move Base Flex by relaying <code>mb_msgs/MoveBaseAction</code> to <code>mbf_msgs/MoveBaseAction</code> in a standard Move Base goal callback. This is useful in case you want to use Move Base Flex as a drop-in replacement for Move Base and want to take advantage of continous replanning, which is built into Move Base Flex, but not Move Base.</p>
 <h3 id="code">Code</h3>
 <div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">actionlib</span>
 <span class="kn">import</span> <span class="nn">rospy</span>
