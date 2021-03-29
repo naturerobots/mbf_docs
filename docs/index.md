@@ -12,7 +12,7 @@ MBF, first are foremost, provides *an enhanced version of the planner, controlle
 
 ## Core Features
  
-* Fully backwards-compatible with current ROS navigation.
+* Fully backwards-compatible with current ROS1 navigation.
 * Actions for the submodules planning, controlling and recovering, and services to query the costmaps are provided. This interface allows external executives, e.g. SMACH, or Behavior Trees, to run highly flexible and complex navigation strategies.
 * Comprehensive result and feedback information on all actions, including error codes and messages from the loaded plugins. For users still relying on a unique navigation interface, we have extended move_base action with detailed result and feedback information (though we still provide the current one).
 * Separation between an abstract navigation framework and concrete implementations, allowing faster development of new applications, e.g. 3D navigation.

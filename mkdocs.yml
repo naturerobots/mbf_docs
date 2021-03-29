@@ -37,6 +37,7 @@ nav:
       - Overview: tutorials/advanced/overview.md
       - Writing a simple SMACH: tutorials/advanced/smach.md
       - Continuous Replanning: tutorials/advanced/continuous_replanning.md
+      - Recovery Behavior: tutorials/advanced/recovery_behavior.md
     - Expert: tutorials/expert/overview.md
     - Writing MBF Plugins: tutorials/writing_mbf_plugins.md
     - Mesh Navigation Stack: tutorials/mesh_navigation_stack.md

@@ -26,16 +26,16 @@ From source of workspace:
 cd ~/catkin_ws/src
 catkin_make -j4 && source devel/setup.bash`
 ```
-Define the Turlebot model you want to use:
-```bash
-export TURTLEBOT3_MODEL=burger
-```
+
 Launch the appropriate gazebo world
 ```bash
+export TURTLEBOT3_MODEL=burger
 roslaunch turtlebot3_gazebo turtlebot3_world.launch
+
 ```
 Start localization (AMCL)
 ```bash
+export TURTLEBOT3_MODEL=burger
 roslaunch mbf_beginner amcl_demo_relay_subscriber.launch
 ```
 
@@ -58,7 +58,7 @@ You will now be able to navigate in a similar fashion to this:
 
 ## What is happening here? 
 
-We used Move Base Flex by relaying `mb_msgs/MoveBaseAction` to `mbf_msgs/MoveBaseAction`. 
+We used Move Base Flex by relaying `mb_msgs/MoveBaseAction` to `mbf_msgs/MoveBaseAction` in a standard Move Base goal callback. This is useful in case you want to use Move Base Flex as a drop-in replacement for Move Base and want to take advantage of continous replanning, which is built into Move Base Flex, but not Move Base.
 
 ### Code
 
