@@ -41,6 +41,4 @@ nav:
     - Writing MBF Plugins: tutorials/writing_mbf_plugins.md
     - Mesh Navigation Stack: tutorials/mesh_navigation_stack.md
   - Concepts:
-    - Architecture: concepts/architecture.md
-    - At A Glance: concepts/at_a_glance.md
-    - Navigation Servers: concepts/navigation_servers.md
+    - Concepts: concepts/concepts.md
