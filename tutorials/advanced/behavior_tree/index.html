@@ -9,14 +9,14 @@
       
       
       
-        <link rel="canonical" href="https://uos.github.io/tutorials/advanced/continuous_replanning/">
+        <link rel="canonical" href="https://uos.github.io/tutorials/advanced/behavior_tree/">
       
       <link rel="icon" href="../../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.1.0">
     
     
       
-        <title>Continuous Replanning - Move Base Flex Documentation</title>
+        <title>Behavior Tree (C++) - Move Base Flex Documentation</title>
       
     
     
@@ -61,7 +61,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#continuous-replanning" class="md-skip">
+        <a href="#behavior-trees" class="md-skip">
           Skip to content
         </a>
       
@@ -91,7 +91,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Continuous Replanning
+              Behavior Tree (C++)
             
           </span>
         </div>
@@ -571,49 +571,11 @@
             
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          Continuous Replanning
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../continuous_replanning/" class="md-nav__link">
         Continuous Replanning
       </a>
-      
-        
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#mbf_msgsmovebaseaction" class="md-nav__link">
-    mbf_msgs/MoveBaseAction
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -633,11 +595,56 @@
             
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../behavior_tree/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Behavior Tree (C++)
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         Behavior Tree (C++)
       </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-code" class="md-nav__link">
+    The Code
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-code-explained" class="md-nav__link">
+    The Code explained
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -798,8 +805,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#mbf_msgsmovebaseaction" class="md-nav__link">
-    mbf_msgs/MoveBaseAction
+  <a href="#the-code" class="md-nav__link">
+    The Code
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-code-explained" class="md-nav__link">
+    The Code explained
   </a>
   
 </li>
@@ -816,17 +830,143 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/magazino/move_base_flex/edit/master/docs/tutorials/advanced/continuous_replanning.md" title="Edit this page" class="md-content__button md-icon">
+                  <a href="https://github.com/magazino/move_base_flex/edit/master/docs/tutorials/advanced/behavior_tree.md" title="Edit this page" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
                 
-                <h1 id="continuous-replanning">Continuous Replanning</h1>
-<p><strong>WIP</strong></p>
-<p>Up to this point in the MBF Tutorials the general planning flow has been to generate a global plan to the target once, and handing over the path to the local planner/controller to execute the plan. This behavior is inherently unable to handle dynamic changes to the environment the robot is in: After a certain amount of necessary change to the global plan, the local_planner/controller will fail. The amount of change that the navigation stack can handle is highly dependent on the specific controller.</p>
-<p>This is were <strong>continuous replanning</strong> comes into play: To make the local planners life easier, we will use the globbal planner to replan from the current state in continous intervals.</p>
-<h2 id="mbf_msgsmovebaseaction">mbf_msgs/MoveBaseAction</h2>
-<p>Move Base Flex has continuous replanning built into the <code>mbf_msgs/MoveBaseAction</code> ROS service call, which makes continuous replanning in simple dynamic environments very easy!</p>
+                <h1 id="behavior-trees">Behavior Trees</h1>
+<p>Behavior Trees are an interesting alternative to State Machines</p>
+<h2 id="the-code">The Code</h2>
+<div class="highlight"><pre><span></span><code><span class="cp">#include</span> <span class="cpf">&lt;fstream&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;ros/ros.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;behaviortree_cpp_v3/bt_factory.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;mbf_advanced/mbf_cpp_client.h&gt;</span><span class="cp"></span>
+
+
+<span class="n">BT</span><span class="o">::</span><span class="n">NodeStatus</span> <span class="n">DriveHome</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">mbf_advanced</span><span class="o">::</span><span class="n">MBFClient</span><span class="o">&gt;&amp;</span> <span class="n">mbfclient</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">ROS_INFO_STREAM</span><span class="p">(</span><span class="s">&quot;BT: driving home&quot;</span><span class="p">);</span>
+    <span class="k">return</span> <span class="n">mbfclient</span><span class="o">-&gt;</span><span class="n">driveHome</span><span class="p">()</span> <span class="o">?</span> <span class="n">BT</span><span class="o">::</span><span class="n">NodeStatus</span><span class="o">::</span><span class="nl">SUCCESS</span> <span class="p">:</span> <span class="n">BT</span><span class="o">::</span><span class="n">NodeStatus</span><span class="o">::</span><span class="n">FAILURE</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">class</span> <span class="nc">AttemptNext</span> <span class="o">:</span> <span class="k">public</span> <span class="n">BT</span><span class="o">::</span><span class="n">SyncActionNode</span>
+<span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+    <span class="k">explicit</span> <span class="n">AttemptNext</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span> <span class="n">name</span><span class="p">)</span>
+      <span class="o">:</span> <span class="n">BT</span><span class="o">::</span><span class="n">SyncActionNode</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="p">{})</span>
+      <span class="p">,</span> <span class="n">mbfclient_</span><span class="p">{}</span>
+    <span class="p">{</span> <span class="p">}</span>
+
+    <span class="kt">void</span> <span class="n">attachMBFClient</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">mbf_advanced</span><span class="o">::</span><span class="n">MBFClient</span><span class="o">&gt;</span> <span class="n">mbfclient</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">mbfclient_</span> <span class="o">=</span> <span class="n">mbfclient</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="n">BT</span><span class="o">::</span><span class="n">NodeStatus</span> <span class="n">tick</span><span class="p">()</span> <span class="k">override</span>
+    <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">mbfclient_</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">ROS_INFO_STREAM</span><span class="p">(</span><span class="s">&quot;BT: &quot;</span> <span class="o">&lt;&lt;</span> <span class="k">this</span><span class="o">-&gt;</span><span class="n">name</span><span class="p">());</span>
+
+            <span class="k">try</span>
+            <span class="p">{</span>
+                <span class="k">auto</span> <span class="n">status</span> <span class="o">=</span> <span class="n">mbfclient_</span><span class="o">-&gt;</span><span class="n">next_move</span><span class="p">()</span> <span class="o">?</span> <span class="n">BT</span><span class="o">::</span><span class="n">NodeStatus</span><span class="o">::</span><span class="nl">SUCCESS</span> <span class="p">:</span> <span class="n">BT</span><span class="o">::</span><span class="n">NodeStatus</span><span class="o">::</span><span class="n">FAILURE</span><span class="p">;</span>
+                <span class="k">return</span> <span class="n">status</span><span class="p">;</span>
+            <span class="p">}</span>
+            <span class="k">catch</span> <span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">runtime_error</span><span class="o">&amp;</span> <span class="n">e</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="n">ROS_INFO_STREAM</span><span class="p">(</span><span class="s">&quot;Reached end of circle poses: &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">e</span><span class="p">.</span><span class="n">what</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;. Returning BT::NodeStatus::Failure to break our of BT.&quot;</span><span class="p">);</span>
+                <span class="k">return</span> <span class="n">BT</span><span class="o">::</span><span class="n">NodeStatus</span><span class="o">::</span><span class="n">FAILURE</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+
+        <span class="k">return</span> <span class="n">BT</span><span class="o">::</span><span class="n">NodeStatus</span><span class="o">::</span><span class="n">FAILURE</span><span class="p">;</span>
+    <span class="p">}</span>
+
+<span class="k">private</span><span class="o">:</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">mbf_advanced</span><span class="o">::</span><span class="n">MBFClient</span><span class="o">&gt;</span> <span class="n">mbfclient_</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="k">class</span> <span class="nc">AttemptPrevious</span> <span class="o">:</span> <span class="k">public</span> <span class="n">BT</span><span class="o">::</span><span class="n">SyncActionNode</span>
+<span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+    <span class="n">AttemptPrevious</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span> <span class="n">name</span><span class="p">)</span>
+            <span class="o">:</span> <span class="n">SyncActionNode</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="p">{})</span>
+            <span class="p">,</span> <span class="n">mbfclient_</span><span class="p">{}</span>
+    <span class="p">{</span> <span class="p">}</span>
+
+    <span class="kt">void</span> <span class="n">attachMBFClient</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">mbf_advanced</span><span class="o">::</span><span class="n">MBFClient</span><span class="o">&gt;</span> <span class="n">mbfclient</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">mbfclient_</span> <span class="o">=</span> <span class="n">mbfclient</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="n">BT</span><span class="o">::</span><span class="n">NodeStatus</span> <span class="n">tick</span><span class="p">()</span> <span class="k">override</span>
+    <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">mbfclient_</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">ROS_INFO_STREAM</span><span class="p">(</span><span class="s">&quot;BT: &quot;</span> <span class="o">&lt;&lt;</span> <span class="k">this</span><span class="o">-&gt;</span><span class="n">name</span><span class="p">());</span>
+            <span class="k">return</span> <span class="n">mbfclient_</span><span class="o">-&gt;</span><span class="n">prev_move</span><span class="p">()</span> <span class="o">?</span> <span class="n">BT</span><span class="o">::</span><span class="n">NodeStatus</span><span class="o">::</span><span class="nl">SUCCESS</span> <span class="p">:</span> <span class="n">BT</span><span class="o">::</span><span class="n">NodeStatus</span><span class="o">::</span><span class="n">FAILURE</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="k">return</span> <span class="n">BT</span><span class="o">::</span><span class="n">NodeStatus</span><span class="o">::</span><span class="n">FAILURE</span><span class="p">;</span>
+    <span class="p">}</span>
+
+<span class="k">private</span><span class="o">:</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">mbf_advanced</span><span class="o">::</span><span class="n">MBFClient</span><span class="o">&gt;</span> <span class="n">mbfclient_</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">**</span> <span class="n">argv</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">ros</span><span class="o">::</span><span class="n">init</span><span class="p">(</span><span class="n">argc</span><span class="p">,</span> <span class="n">argv</span><span class="p">,</span> <span class="s">&quot;behavior_tree&quot;</span><span class="p">);</span>
+    <span class="n">ros</span><span class="o">::</span><span class="n">NodeHandle</span> <span class="n">n</span><span class="p">;</span>
+
+    <span class="k">auto</span> <span class="n">mbfclient</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">mbf_advanced</span><span class="o">::</span><span class="n">MBFClient</span><span class="o">&gt;</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">mbf_advanced</span><span class="o">::</span><span class="n">loadPoseGoals</span><span class="p">(</span><span class="n">POSE_PATH</span><span class="p">)));</span>
+
+    <span class="n">BT</span><span class="o">::</span><span class="n">BehaviorTreeFactory</span> <span class="n">factory</span><span class="p">;</span>
+    <span class="n">factory</span><span class="p">.</span><span class="n">registerSimpleCondition</span><span class="p">(</span><span class="s">&quot;DriveHomeStart&quot;</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">bind</span><span class="p">(</span><span class="n">DriveHome</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">ref</span><span class="p">(</span><span class="n">mbfclient</span><span class="p">)));</span>
+    <span class="n">factory</span><span class="p">.</span><span class="n">registerNodeType</span><span class="o">&lt;</span><span class="n">AttemptNext</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;AttemptNext&quot;</span><span class="p">);</span>
+    <span class="n">factory</span><span class="p">.</span><span class="n">registerNodeType</span><span class="o">&lt;</span><span class="n">AttemptPrevious</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;AttemptPrevious&quot;</span><span class="p">);</span>
+    <span class="n">factory</span><span class="p">.</span><span class="n">registerSimpleCondition</span><span class="p">(</span><span class="s">&quot;DriveHomeEnd&quot;</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">bind</span><span class="p">(</span><span class="n">DriveHome</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">ref</span><span class="p">(</span><span class="n">mbfclient</span><span class="p">)));</span>
+
+    <span class="k">auto</span> <span class="n">tree</span> <span class="o">=</span> <span class="n">factory</span><span class="p">.</span><span class="n">createTreeFromFile</span><span class="p">(</span><span class="n">BT_XML_PATH</span><span class="p">);</span>
+
+    <span class="k">for</span><span class="p">(</span> <span class="k">auto</span><span class="o">&amp;</span> <span class="nl">node</span><span class="p">:</span> <span class="n">tree</span><span class="p">.</span><span class="n">nodes</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span> <span class="k">auto</span> <span class="n">attempt_next</span> <span class="o">=</span> <span class="k">dynamic_cast</span><span class="o">&lt;</span><span class="n">AttemptNext</span><span class="o">*&gt;</span><span class="p">(</span> <span class="n">node</span><span class="p">.</span><span class="n">get</span><span class="p">()</span> <span class="p">))</span>
+        <span class="p">{</span>
+            <span class="n">attempt_next</span><span class="o">-&gt;</span><span class="n">attachMBFClient</span><span class="p">(</span><span class="n">mbfclient</span><span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="k">if</span><span class="p">(</span> <span class="k">auto</span> <span class="n">attempt_prev</span> <span class="o">=</span> <span class="k">dynamic_cast</span><span class="o">&lt;</span><span class="n">AttemptPrevious</span><span class="o">*&gt;</span><span class="p">(</span> <span class="n">node</span><span class="p">.</span><span class="n">get</span><span class="p">()</span> <span class="p">))</span>
+        <span class="p">{</span>
+            <span class="n">attempt_prev</span><span class="o">-&gt;</span><span class="n">attachMBFClient</span><span class="p">(</span><span class="n">mbfclient</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="n">tree</span><span class="p">.</span><span class="n">tickRoot</span><span class="p">();</span>
+
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>and the corresponding <code>.xml</code> file</p>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;root</span> <span class="na">main_tree_to_execute =</span> <span class="s">&quot;MainTree&quot;</span> <span class="nt">&gt;</span>
+    <span class="nt">&lt;BehaviorTree</span> <span class="na">ID=</span><span class="s">&quot;MainTree&quot;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;Sequence</span> <span class="na">name=</span><span class="s">&quot;endless_circle&quot;</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;DriveHomeStart</span> <span class="na">name=</span><span class="s">&quot;drive_home_start&quot;</span><span class="nt">/&gt;</span>
+                <span class="nt">&lt;Repeat</span> <span class="na">num_cycles=</span><span class="s">&quot;-1&quot;</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;Fallback&gt;</span>
+                    <span class="nt">&lt;AttemptNext</span> <span class="na">name=</span><span class="s">&quot;attempt_next&quot;</span><span class="nt">/&gt;</span>
+                    <span class="nt">&lt;AttemptPrevious</span> <span class="na">name=</span><span class="s">&quot;attempt_previous&quot;</span><span class="nt">/&gt;</span>
+                    <span class="nt">&lt;DriveHomeEnd</span> <span class="na">name=</span><span class="s">&quot;drive_home_end&quot;</span><span class="nt">/&gt;</span>
+                <span class="nt">&lt;/Fallback&gt;</span>
+            <span class="nt">&lt;/Repeat&gt;</span>
+        <span class="nt">&lt;/Sequence&gt;</span>
+    <span class="nt">&lt;/BehaviorTree&gt;</span>
+<span class="nt">&lt;/root&gt;</span>
+</code></pre></div>
+<h2 id="the-code-explained">The Code explained</h2>
+<p>TODO</p>
                 
               
               
@@ -845,7 +985,7 @@
   
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
-        <a href="../smach/" class="md-footer__link md-footer__link--prev" rel="prev">
+        <a href="../recovery_behavior/" class="md-footer__link md-footer__link--prev" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -854,19 +994,19 @@
               <span class="md-footer__direction">
                 Previous
               </span>
-              Writing a simple SMACH
+              Recovery Behavior
             </div>
           </div>
         </a>
       
       
-        <a href="../recovery_behavior/" class="md-footer__link md-footer__link--next" rel="next">
+        <a href="../pytrees/" class="md-footer__link md-footer__link--next" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              Recovery Behavior
+              Behavior Tree (Python)
             </div>
           </div>
           <div class="md-footer__button md-icon">

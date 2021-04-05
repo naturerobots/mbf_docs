@@ -9,21 +9,21 @@
       
       
       
-        <link rel="canonical" href="https://uos.github.io/concepts/concepts/">
+        <link rel="canonical" href="https://uos.github.io/tutorials/advanced/pytrees/">
       
-      <link rel="icon" href="../../assets/images/favicon.png">
+      <link rel="icon" href="../../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.1.0">
     
     
       
-        <title>Concepts - Move Base Flex Documentation</title>
+        <title>Behavior Tree (Python) - Move Base Flex Documentation</title>
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.33e2939f.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.33e2939f.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.ef6f36e2.min.css">
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ef6f36e2.min.css">
         
       
     
@@ -53,7 +53,7 @@
     <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
   
     
-    <script>function __prefix(e){return new URL("../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    <script>function __prefix(e){return new URL("../../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
@@ -61,7 +61,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#concepts" class="md-skip">
+        <a href="#wip" class="md-skip">
           Skip to content
         </a>
       
@@ -72,7 +72,7 @@
     
       <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="Move Base Flex Documentation" class="md-header__button md-logo" aria-label="Move Base Flex Documentation" data-md-component="logo">
+    <a href="../../.." title="Move Base Flex Documentation" class="md-header__button md-logo" aria-label="Move Base Flex Documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
@@ -91,7 +91,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Concepts
+              Behavior Tree (Python)
             
           </span>
         </div>
@@ -162,7 +162,7 @@
 
 
   <li class="md-tabs__item">
-    <a href="../.." class="md-tabs__link">
+    <a href="../../.." class="md-tabs__link">
       Home
     </a>
   </li>
@@ -174,7 +174,7 @@
 
 
   <li class="md-tabs__item">
-    <a href="../../showcase/" class="md-tabs__link">
+    <a href="../../../showcase/" class="md-tabs__link">
       Showcase
     </a>
   </li>
@@ -189,7 +189,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../installation/" class="md-tabs__link">
+      <a href="../../../installation/" class="md-tabs__link">
         Getting Started
       </a>
     </li>
@@ -198,6 +198,8 @@
       
         
   
+  
+    
   
 
 
@@ -210,7 +212,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../tutorials/beginner/overview/" class="md-tabs__link">
+      <a href="../../beginner/overview/" class="md-tabs__link md-tabs__link--active">
         Tutorials
       </a>
     </li>
@@ -222,15 +224,13 @@
         
   
   
-    
-  
 
 
   
   
   
     <li class="md-tabs__item">
-      <a href="./" class="md-tabs__link md-tabs__link--active">
+      <a href="../../../concepts/concepts/" class="md-tabs__link">
         Concepts
       </a>
     </li>
@@ -257,7 +257,7 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="Move Base Flex Documentation" class="md-nav__button md-logo" aria-label="Move Base Flex Documentation" data-md-component="logo">
+    <a href="../../.." title="Move Base Flex Documentation" class="md-nav__button md-logo" aria-label="Move Base Flex Documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
@@ -289,7 +289,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../.." class="md-nav__link">
+      <a href="../../.." class="md-nav__link">
         Home
       </a>
     </li>
@@ -304,7 +304,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../showcase/" class="md-nav__link">
+      <a href="../../../showcase/" class="md-nav__link">
         Showcase
       </a>
     </li>
@@ -340,7 +340,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../installation/" class="md-nav__link">
+      <a href="../../../installation/" class="md-nav__link">
         Installation
       </a>
     </li>
@@ -352,7 +352,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../tutorials/overview/" class="md-nav__link">
+      <a href="../../overview/" class="md-nav__link">
         Tutorials
       </a>
     </li>
@@ -371,12 +371,14 @@
 
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" checked>
       
       <label class="md-nav__link" for="__nav_4">
         Tutorials
@@ -417,7 +419,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../tutorials/beginner/overview/" class="md-nav__link">
+      <a href="../../beginner/overview/" class="md-nav__link">
         Overview
       </a>
     </li>
@@ -429,7 +431,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../tutorials/beginner/basic_navigation/" class="md-nav__link">
+      <a href="../../beginner/basic_navigation/" class="md-nav__link">
         Basic Navigation
       </a>
     </li>
@@ -441,7 +443,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../tutorials/beginner/beyond_relay/" class="md-nav__link">
+      <a href="../../beginner/beyond_relay/" class="md-nav__link">
         Beyond the Relay - Move Base Flex
       </a>
     </li>
@@ -453,7 +455,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../tutorials/beginner/path_planning/" class="md-nav__link">
+      <a href="../../beginner/path_planning/" class="md-nav__link">
         Path Planning
       </a>
     </li>
@@ -486,7 +488,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../tutorials/beginner/parameters/overview/" class="md-nav__link">
+      <a href="../../beginner/parameters/overview/" class="md-nav__link">
         Overview
       </a>
     </li>
@@ -498,7 +500,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../tutorials/beginner/parameters/mbf_parameters/" class="md-nav__link">
+      <a href="../../beginner/parameters/mbf_parameters/" class="md-nav__link">
         MBF Parameters
       </a>
     </li>
@@ -520,14 +522,16 @@
             
   
   
+    
+  
   
     
       
     
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_2" type="checkbox" id="__nav_4_2" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_2" type="checkbox" id="__nav_4_2" checked>
       
       <label class="md-nav__link" for="__nav_4_2">
         Advanced
@@ -545,7 +549,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../tutorials/advanced/overview/" class="md-nav__link">
+      <a href="../overview/" class="md-nav__link">
         Overview
       </a>
     </li>
@@ -557,7 +561,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../tutorials/advanced/smach/" class="md-nav__link">
+      <a href="../smach/" class="md-nav__link">
         Writing a simple SMACH
       </a>
     </li>
@@ -569,7 +573,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../tutorials/advanced/continuous_replanning/" class="md-nav__link">
+      <a href="../continuous_replanning/" class="md-nav__link">
         Continuous Replanning
       </a>
     </li>
@@ -581,7 +585,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../tutorials/advanced/recovery_behavior/" class="md-nav__link">
+      <a href="../recovery_behavior/" class="md-nav__link">
         Recovery Behavior
       </a>
     </li>
@@ -593,7 +597,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../tutorials/advanced/behavior_tree/" class="md-nav__link">
+      <a href="../behavior_tree/" class="md-nav__link">
         Behavior Tree (C++)
       </a>
     </li>
@@ -603,11 +607,20 @@
             
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../../tutorials/advanced/pytrees/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         Behavior Tree (Python)
       </a>
+      
     </li>
   
 
@@ -646,7 +659,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../tutorials/expert/overview/" class="md-nav__link">
+      <a href="../../expert/overview/" class="md-nav__link">
         Overview
       </a>
     </li>
@@ -664,7 +677,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../tutorials/writing_mbf_plugins/" class="md-nav__link">
+      <a href="../../writing_mbf_plugins/" class="md-nav__link">
         Writing MBF Plugins
       </a>
     </li>
@@ -676,7 +689,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../tutorials/mesh_navigation_stack/" class="md-nav__link">
+      <a href="../../mesh_navigation_stack/" class="md-nav__link">
         Mesh Navigation Stack
       </a>
     </li>
@@ -695,14 +708,12 @@
 
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" >
       
       <label class="md-nav__link" for="__nav_5">
         Concepts
@@ -718,110 +729,11 @@
             
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          Concepts
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../../concepts/concepts/" class="md-nav__link">
         Concepts
       </a>
-      
-        
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#actionlib-action-servers-and-clients" class="md-nav__link">
-    Actionlib: Action Servers and Clients
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#environment-representation" class="md-nav__link">
-    Environment Representation
-  </a>
-  
-    <nav class="md-nav" aria-label="Environment Representation">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#costmap" class="md-nav__link">
-    Costmap
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#others" class="md-nav__link">
-    Others
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#planners-controllers-recovery-behavior" class="md-nav__link">
-    Planners, Controllers, Recovery Behavior
-  </a>
-  
-    <nav class="md-nav" aria-label="Planners, Controllers, Recovery Behavior">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#planners" class="md-nav__link">
-    Planners
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#controller" class="md-nav__link">
-    Controller
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#recovery-behavior" class="md-nav__link">
-    Recovery Behavior
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -850,82 +762,6 @@
     
   
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#actionlib-action-servers-and-clients" class="md-nav__link">
-    Actionlib: Action Servers and Clients
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#environment-representation" class="md-nav__link">
-    Environment Representation
-  </a>
-  
-    <nav class="md-nav" aria-label="Environment Representation">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#costmap" class="md-nav__link">
-    Costmap
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#others" class="md-nav__link">
-    Others
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#planners-controllers-recovery-behavior" class="md-nav__link">
-    Planners, Controllers, Recovery Behavior
-  </a>
-  
-    <nav class="md-nav" aria-label="Planners, Controllers, Recovery Behavior">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#planners" class="md-nav__link">
-    Planners
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#controller" class="md-nav__link">
-    Controller
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#recovery-behavior" class="md-nav__link">
-    Recovery Behavior
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -936,41 +772,12 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/magazino/move_base_flex/edit/master/docs/concepts/concepts.md" title="Edit this page" class="md-content__button md-icon">
+                  <a href="https://github.com/magazino/move_base_flex/edit/master/docs/tutorials/advanced/pytrees.md" title="Edit this page" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
                 
-                <h1 id="concepts">Concepts</h1>
-<h2 id="actionlib-action-servers-and-clients">Actionlib: Action Servers and Clients</h2>
-<p>Actionlib is a built-in ROS package and provides a standardized interfaces for working with preemptible tasks and is a central piece of communicating </p>
-<p>Typically, a client will request some task to be completed on the server. Because this action will complete at some time in the future, feedback that the client can receive during execution can be anything and is defined in the corresponding ROS <code>.action</code>. This architecture is flexible in the sense that the client can chose to block or poll the server, until the goal is reached.</p>
-<p>In Move Base Flex, for example, the <code>mbf_msgs/MoveBaseAction</code> provides the distance to the goal, angle to the goal, current pose and last command calculated by the controller to the client during path execution.</p>
-<p>The <a href="http://wiki.ros.org/actionlib/Tutorials">official tutorials</a> are a good place to get started.</p>
-<h2 id="environment-representation">Environment Representation</h2>
-<h3 id="costmap">Costmap</h3>
-<p>The default environmental representation of Move Base Flex is a costmap, which is a regular 2D grid of cells representing an occupancy grid of the sensor data. A cells state can generally known to be <code>unknown</code>, <code>free</code> or <code>occupied</code> by an obstacle.</p>
-<p>Costmaps can be created from LIDAR, RADAR, sonar, (depth) images and more. </p>
-<h3 id="others">Others</h3>
-<p>Many different environment represetations exist, e.g.</p>
-<ul>
-<li>3D costmap: represents planning space in 3D</li>
-<li>Mesh maps: the planning space is represented with a surface mesh. You can see a mesh navigation plugin for Move Base Flex <a href="https://github.com/uos/mesh_navigation">here</a>.</li>
-<li>Gradient maps: Typically used for traversibility tasks as surface is represented as gradients</li>
-</ul>
-<h2 id="planners-controllers-recovery-behavior">Planners, Controllers, Recovery Behavior</h2>
-<h3 id="planners">Planners</h3>
-<p>The general task for a planner is to compute a valid and potentially optimal path from the current pose to a goal pose. For this, the planner has access to a global environment representation and sensor data (IMU, Lidar, etc).</p>
-<p>The default global planner in the ROS1 Navigation Stack is <code>navfn/NavfnROS</code>.</p>
-<h3 id="controller">Controller</h3>
-<p>A controller, also referred to as <em>local planner</em> in the ROS1 navigation stack, computes how to follow the global path provided by a global Planner by generating control signals. Many different controllers exist, that implement different features.</p>
-<p>Some popular local planners/controllers in the ROS1 navigation ecosystem are </p>
-<ul>
-<li><code>dwa_local_planner/DWALocalPlannerROS</code></li>
-<li><code>eband_local_planner/EBandPlannerROS</code></li>
-</ul>
-<h3 id="recovery-behavior">Recovery Behavior</h3>
-<p>TODO ADVANCED TUTORIAL</p>
+                <h1 id="wip">WIP</h1>
                 
               
               
@@ -989,7 +796,7 @@
   
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
-        <a href="../../tutorials/mesh_navigation_stack/" class="md-footer__link md-footer__link--prev" rel="prev">
+        <a href="../behavior_tree/" class="md-footer__link md-footer__link--prev" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -998,11 +805,25 @@
               <span class="md-footer__direction">
                 Previous
               </span>
-              Mesh Navigation Stack
+              Behavior Tree (C++)
             </div>
           </div>
         </a>
       
+      
+        <a href="../../expert/overview/" class="md-footer__link md-footer__link--next" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Overview
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
       
     </nav>
   
@@ -1025,10 +846,10 @@
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.instant", "navigation.tabs", "navigation.sections"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "../../assets/javascripts/workers/search.fe42c31b.min.js", "version": null}</script>
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.instant", "navigation.tabs", "navigation.sections"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "../../../assets/javascripts/workers/search.fe42c31b.min.js", "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.d892486b.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.d892486b.min.js"></script>
       
     
   </body>
