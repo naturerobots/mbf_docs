@@ -10,6 +10,7 @@ theme:
     features:
       - navigation.instant
       - navigation.tabs
+      - navigation.sections
 
 markdown_extensions:
   - pymdownx.highlight
@@ -38,7 +39,10 @@ nav:
       - Writing a simple SMACH: tutorials/advanced/smach.md
       - Continuous Replanning: tutorials/advanced/continuous_replanning.md
       - Recovery Behavior: tutorials/advanced/recovery_behavior.md
-    - Expert: tutorials/expert/overview.md
+      - Behavior Tree (C++): tutorials/advanced/behavior_tree.md
+      - Behavior Tree (Python): tutorials/advanced/pytrees.md
+    - Expert: 
+      - Overview: tutorials/expert/overview.md
     - Writing MBF Plugins: tutorials/writing_mbf_plugins.md
     - Mesh Navigation Stack: tutorials/mesh_navigation_stack.md
   - Concepts:
