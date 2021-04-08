@@ -12,6 +12,7 @@ theme:
       - navigation.tabs
       - navigation.sections
     logo: img/mbf_icon.png
+    favicon: img/mbf_icon.png
     palette:
       primary: cyan
 
@@ -21,6 +22,7 @@ markdown_extensions:
   - pymdownx.tabbed
   - pymdownx.details
   - admonition
+  - attr_list
 
 nav:
   - Home: index.md

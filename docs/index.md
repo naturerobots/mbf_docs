@@ -1,6 +1,12 @@
-# Move Base Flex: A Highly Flexible Navigation Framework
+<figure>
+  <img src="./img/mbf_logo.png" width="500" />
+</figure>
+</br>
 
-Move Base Flex (MBF) is a enhanced and flexible backwards-compatible replacement for [move_base](https://wiki.ros.org/move_base). 
+[//]: # (if there is no header at all, mkdocs will inject a "# Home" -> no good)
+# 
+
+**Move Base Flex** (MBF) is an enhanced and highly flexible backwards-compatible replacement for [move_base](https://wiki.ros.org/move_base). 
 
 ## In Short
 
