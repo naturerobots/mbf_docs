@@ -1,0 +1,14 @@
+digraph G {
+  root -> driveHomeStart;
+  root -> ForceSuccess;
+  ForceSuccess -> Repeat;
+  Repeat -> Fallback;
+  Fallback -> attemptNext;
+  Fallback -> attemptPrevious;
+  root -> driveHomeEnd;
+
+  root [shape=Mdiamond];
+  ForceSuccess [shape=Mrectangle];
+  Repeat [shape=Mrectangle];
+  Fallback [shape=Mrectangle];
+}

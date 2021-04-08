@@ -643,6 +643,20 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#try-it-yourself" class="md-nav__link">
+    Try it yourself
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#wrapping-up" class="md-nav__link">
+    Wrapping up
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -820,6 +834,20 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#try-it-yourself" class="md-nav__link">
+    Try it yourself
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#wrapping-up" class="md-nav__link">
+    Wrapping up
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -838,15 +866,39 @@
                 
                 
                 <h1 id="behavior-trees">Behavior Trees</h1>
-<p>Behavior Trees are an interesting alternative to State Machines</p>
+<p>Behavior Trees are an interesting alternative to State Machines. Actions between states in a SMACH become leaves in a tree, and moving between states in a SMACH is handles by the root of the tree in Behavior Tree based planning. For more details, visit <a href="https://www.behaviortree.dev/bt_basics/">this overview</a>.</p>
+<p>We will use a Behavior Tree based on the <a href="https://github.com/BehaviorTree/BehaviorTree.CPP">BehaviorTree.CPP library</a> to implement the following algorithm:</p>
+<p><img alt="" src="../../../img/bt.png" /></p>
+<p>You could express the tree in the following way:</p>
+<blockquote>
+<p>First, drive Home. </p>
+<p>Once you've reached home, repeat:</p>
+<ul>
+<li>
+<p>Attempt to move to next goal</p>
+</li>
+<li>
+<p>If that fails, attempt to skip to next goal.</p>
+</li>
+<li>
+<p>If that fails, attempt to move back.</p>
+</li>
+<li>
+<p>If that fails, attempt to skip over the move back.</p>
+</li>
+</ul>
+<p>When all of that fails (because we reached end of circle, or fatal planner error), force BT to go drive Home (ForceSucess)</p>
+</blockquote>
+<p><em>It is important to understand that this fallback behavior is implemented <strong>separately</strong> from the Move Base Flex recovery plugin infrastructure covered in the <a href="../recovery_behavior/">previous tutorial</a>.</em></p>
 <h2 id="the-code">The Code</h2>
-<div class="highlight"><pre><span></span><code><span class="cp">#include</span> <span class="cpf">&lt;fstream&gt;</span><span class="cp"></span>
+<p><div class="highlight"><pre><span></span><code><span class="cp">#include</span> <span class="cpf">&lt;fstream&gt;</span><span class="cp"></span>
 <span class="cp">#include</span> <span class="cpf">&lt;ros/ros.h&gt;</span><span class="cp"></span>
 <span class="cp">#include</span> <span class="cpf">&lt;behaviortree_cpp_v3/bt_factory.h&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;mbf_advanced/mbf_cpp_client.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;mbf_advanced/mbf_circle_client.h&gt;</span><span class="cp"></span>
 
+<span class="k">using</span> <span class="n">State</span> <span class="o">=</span> <span class="n">mbf_advanced</span><span class="o">::</span><span class="n">MBFCircleClientState</span><span class="p">;</span>
 
-<span class="n">BT</span><span class="o">::</span><span class="n">NodeStatus</span> <span class="n">DriveHome</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">mbf_advanced</span><span class="o">::</span><span class="n">MBFClient</span><span class="o">&gt;&amp;</span> <span class="n">mbfclient</span><span class="p">)</span>
+<span class="n">BT</span><span class="o">::</span><span class="n">NodeStatus</span> <span class="n">DriveHome</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">mbf_advanced</span><span class="o">::</span><span class="n">MBFCircleClient</span><span class="o">&gt;&amp;</span> <span class="n">mbfclient</span><span class="p">)</span>
 <span class="p">{</span>
     <span class="n">ROS_INFO_STREAM</span><span class="p">(</span><span class="s">&quot;BT: driving home&quot;</span><span class="p">);</span>
     <span class="k">return</span> <span class="n">mbfclient</span><span class="o">-&gt;</span><span class="n">driveHome</span><span class="p">()</span> <span class="o">?</span> <span class="n">BT</span><span class="o">::</span><span class="n">NodeStatus</span><span class="o">::</span><span class="nl">SUCCESS</span> <span class="p">:</span> <span class="n">BT</span><span class="o">::</span><span class="n">NodeStatus</span><span class="o">::</span><span class="n">FAILURE</span><span class="p">;</span>
@@ -860,7 +912,7 @@
       <span class="p">,</span> <span class="n">mbfclient_</span><span class="p">{}</span>
     <span class="p">{</span> <span class="p">}</span>
 
-    <span class="kt">void</span> <span class="n">attachMBFClient</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">mbf_advanced</span><span class="o">::</span><span class="n">MBFClient</span><span class="o">&gt;</span> <span class="n">mbfclient</span><span class="p">)</span>
+    <span class="kt">void</span> <span class="n">attachMBFClient</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">mbf_advanced</span><span class="o">::</span><span class="n">MBFCircleClient</span><span class="o">&gt;</span> <span class="n">mbfclient</span><span class="p">)</span>
     <span class="p">{</span>
         <span class="n">mbfclient_</span> <span class="o">=</span> <span class="n">mbfclient</span><span class="p">;</span>
     <span class="p">}</span>
@@ -871,23 +923,44 @@
         <span class="p">{</span>
             <span class="n">ROS_INFO_STREAM</span><span class="p">(</span><span class="s">&quot;BT: &quot;</span> <span class="o">&lt;&lt;</span> <span class="k">this</span><span class="o">-&gt;</span><span class="n">name</span><span class="p">());</span>
 
-            <span class="k">try</span>
-            <span class="p">{</span>
-                <span class="k">auto</span> <span class="n">status</span> <span class="o">=</span> <span class="n">mbfclient_</span><span class="o">-&gt;</span><span class="n">next_move</span><span class="p">()</span> <span class="o">?</span> <span class="n">BT</span><span class="o">::</span><span class="n">NodeStatus</span><span class="o">::</span><span class="nl">SUCCESS</span> <span class="p">:</span> <span class="n">BT</span><span class="o">::</span><span class="n">NodeStatus</span><span class="o">::</span><span class="n">FAILURE</span><span class="p">;</span>
-                <span class="k">return</span> <span class="n">status</span><span class="p">;</span>
-            <span class="p">}</span>
-            <span class="k">catch</span> <span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">runtime_error</span><span class="o">&amp;</span> <span class="n">e</span><span class="p">)</span>
-            <span class="p">{</span>
-                <span class="n">ROS_INFO_STREAM</span><span class="p">(</span><span class="s">&quot;Reached end of circle poses: &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">e</span><span class="p">.</span><span class="n">what</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;. Returning BT::NodeStatus::Failure to break our of BT.&quot;</span><span class="p">);</span>
-                <span class="k">return</span> <span class="n">BT</span><span class="o">::</span><span class="n">NodeStatus</span><span class="o">::</span><span class="n">FAILURE</span><span class="p">;</span>
-            <span class="p">}</span>
+            <span class="k">while</span> <span class="p">(</span><span class="n">mbfclient_</span><span class="o">-&gt;</span><span class="n">next_move</span><span class="p">()</span> <span class="o">==</span> <span class="n">State</span><span class="o">::</span><span class="n">MOVING</span><span class="p">)</span> <span class="p">{}</span>
+
+            <span class="k">return</span> <span class="n">BT</span><span class="o">::</span><span class="n">NodeStatus</span><span class="o">::</span><span class="n">FAILURE</span><span class="p">;</span>
         <span class="p">}</span>
 
         <span class="k">return</span> <span class="n">BT</span><span class="o">::</span><span class="n">NodeStatus</span><span class="o">::</span><span class="n">FAILURE</span><span class="p">;</span>
     <span class="p">}</span>
 
 <span class="k">private</span><span class="o">:</span>
-    <span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">mbf_advanced</span><span class="o">::</span><span class="n">MBFClient</span><span class="o">&gt;</span> <span class="n">mbfclient_</span><span class="p">;</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">mbf_advanced</span><span class="o">::</span><span class="n">MBFCircleClient</span><span class="o">&gt;</span> <span class="n">mbfclient_</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="k">class</span> <span class="nc">AttemptSkip</span> <span class="o">:</span> <span class="k">public</span> <span class="n">BT</span><span class="o">::</span><span class="n">SyncActionNode</span>
+<span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+    <span class="k">explicit</span> <span class="n">AttemptSkip</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span> <span class="n">name</span><span class="p">)</span>
+      <span class="o">:</span> <span class="n">BT</span><span class="o">::</span><span class="n">SyncActionNode</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="p">{})</span>
+      <span class="p">,</span> <span class="n">mbfclient_</span><span class="p">{}</span>
+    <span class="p">{</span> <span class="p">}</span>
+
+    <span class="kt">void</span> <span class="n">attachMBFClient</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">mbf_advanced</span><span class="o">::</span><span class="n">MBFCircleClient</span><span class="o">&gt;</span> <span class="n">mbfclient</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">mbfclient_</span> <span class="o">=</span> <span class="n">mbfclient</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="n">BT</span><span class="o">::</span><span class="n">NodeStatus</span> <span class="n">tick</span><span class="p">()</span> <span class="k">override</span>
+    <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">mbfclient_</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">ROS_INFO_STREAM</span><span class="p">(</span><span class="s">&quot;BT: &quot;</span> <span class="o">&lt;&lt;</span> <span class="k">this</span><span class="o">-&gt;</span><span class="n">name</span><span class="p">());</span>
+            <span class="k">return</span> <span class="p">(</span><span class="n">mbfclient_</span><span class="o">-&gt;</span><span class="n">next_move</span><span class="p">()</span> <span class="o">==</span> <span class="n">State</span><span class="o">::</span><span class="n">MOVING</span><span class="p">)</span> <span class="o">?</span> <span class="n">BT</span><span class="o">::</span><span class="n">NodeStatus</span><span class="o">::</span><span class="nl">SUCCESS</span> <span class="p">:</span> <span class="n">BT</span><span class="o">::</span><span class="n">NodeStatus</span><span class="o">::</span><span class="n">FAILURE</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="k">return</span> <span class="n">BT</span><span class="o">::</span><span class="n">NodeStatus</span><span class="o">::</span><span class="n">FAILURE</span><span class="p">;</span>
+    <span class="p">}</span>
+
+<span class="k">private</span><span class="o">:</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">mbf_advanced</span><span class="o">::</span><span class="n">MBFCircleClient</span><span class="o">&gt;</span> <span class="n">mbfclient_</span><span class="p">;</span>
 <span class="p">};</span>
 
 <span class="k">class</span> <span class="nc">AttemptPrevious</span> <span class="o">:</span> <span class="k">public</span> <span class="n">BT</span><span class="o">::</span><span class="n">SyncActionNode</span>
@@ -898,7 +971,7 @@
             <span class="p">,</span> <span class="n">mbfclient_</span><span class="p">{}</span>
     <span class="p">{</span> <span class="p">}</span>
 
-    <span class="kt">void</span> <span class="n">attachMBFClient</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">mbf_advanced</span><span class="o">::</span><span class="n">MBFClient</span><span class="o">&gt;</span> <span class="n">mbfclient</span><span class="p">)</span>
+    <span class="kt">void</span> <span class="n">attachMBFClient</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">mbf_advanced</span><span class="o">::</span><span class="n">MBFCircleClient</span><span class="o">&gt;</span> <span class="n">mbfclient</span><span class="p">)</span>
     <span class="p">{</span>
         <span class="n">mbfclient_</span> <span class="o">=</span> <span class="n">mbfclient</span><span class="p">;</span>
     <span class="p">}</span>
@@ -908,14 +981,14 @@
         <span class="k">if</span> <span class="p">(</span><span class="n">mbfclient_</span><span class="p">)</span>
         <span class="p">{</span>
             <span class="n">ROS_INFO_STREAM</span><span class="p">(</span><span class="s">&quot;BT: &quot;</span> <span class="o">&lt;&lt;</span> <span class="k">this</span><span class="o">-&gt;</span><span class="n">name</span><span class="p">());</span>
-            <span class="k">return</span> <span class="n">mbfclient_</span><span class="o">-&gt;</span><span class="n">prev_move</span><span class="p">()</span> <span class="o">?</span> <span class="n">BT</span><span class="o">::</span><span class="n">NodeStatus</span><span class="o">::</span><span class="nl">SUCCESS</span> <span class="p">:</span> <span class="n">BT</span><span class="o">::</span><span class="n">NodeStatus</span><span class="o">::</span><span class="n">FAILURE</span><span class="p">;</span>
+            <span class="k">return</span> <span class="p">(</span><span class="n">mbfclient_</span><span class="o">-&gt;</span><span class="n">prev_move</span><span class="p">()</span> <span class="o">==</span> <span class="n">State</span><span class="o">::</span><span class="n">MOVING</span><span class="p">)</span> <span class="o">?</span> <span class="n">BT</span><span class="o">::</span><span class="n">NodeStatus</span><span class="o">::</span><span class="nl">SUCCESS</span> <span class="p">:</span> <span class="n">BT</span><span class="o">::</span><span class="n">NodeStatus</span><span class="o">::</span><span class="n">FAILURE</span><span class="p">;</span>
         <span class="p">}</span>
 
         <span class="k">return</span> <span class="n">BT</span><span class="o">::</span><span class="n">NodeStatus</span><span class="o">::</span><span class="n">FAILURE</span><span class="p">;</span>
     <span class="p">}</span>
 
 <span class="k">private</span><span class="o">:</span>
-    <span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">mbf_advanced</span><span class="o">::</span><span class="n">MBFClient</span><span class="o">&gt;</span> <span class="n">mbfclient_</span><span class="p">;</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">mbf_advanced</span><span class="o">::</span><span class="n">MBFCircleClient</span><span class="o">&gt;</span> <span class="n">mbfclient_</span><span class="p">;</span>
 <span class="p">};</span>
 
 <span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">**</span> <span class="n">argv</span><span class="p">)</span>
@@ -923,12 +996,14 @@
     <span class="n">ros</span><span class="o">::</span><span class="n">init</span><span class="p">(</span><span class="n">argc</span><span class="p">,</span> <span class="n">argv</span><span class="p">,</span> <span class="s">&quot;behavior_tree&quot;</span><span class="p">);</span>
     <span class="n">ros</span><span class="o">::</span><span class="n">NodeHandle</span> <span class="n">n</span><span class="p">;</span>
 
-    <span class="k">auto</span> <span class="n">mbfclient</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">mbf_advanced</span><span class="o">::</span><span class="n">MBFClient</span><span class="o">&gt;</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">mbf_advanced</span><span class="o">::</span><span class="n">loadPoseGoals</span><span class="p">(</span><span class="n">POSE_PATH</span><span class="p">)));</span>
+    <span class="k">auto</span> <span class="n">mbfclient</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">mbf_advanced</span><span class="o">::</span><span class="n">MBFCircleClient</span><span class="o">&gt;</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">mbf_advanced</span><span class="o">::</span><span class="n">loadPoseGoals</span><span class="p">(</span><span class="n">POSE_PATH</span><span class="p">)));</span>
 
     <span class="n">BT</span><span class="o">::</span><span class="n">BehaviorTreeFactory</span> <span class="n">factory</span><span class="p">;</span>
     <span class="n">factory</span><span class="p">.</span><span class="n">registerSimpleCondition</span><span class="p">(</span><span class="s">&quot;DriveHomeStart&quot;</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">bind</span><span class="p">(</span><span class="n">DriveHome</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">ref</span><span class="p">(</span><span class="n">mbfclient</span><span class="p">)));</span>
     <span class="n">factory</span><span class="p">.</span><span class="n">registerNodeType</span><span class="o">&lt;</span><span class="n">AttemptNext</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;AttemptNext&quot;</span><span class="p">);</span>
+    <span class="n">factory</span><span class="p">.</span><span class="n">registerNodeType</span><span class="o">&lt;</span><span class="n">AttemptSkip</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;AttemptSkip&quot;</span><span class="p">);</span>
     <span class="n">factory</span><span class="p">.</span><span class="n">registerNodeType</span><span class="o">&lt;</span><span class="n">AttemptPrevious</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;AttemptPrevious&quot;</span><span class="p">);</span>
+    <span class="n">factory</span><span class="p">.</span><span class="n">registerNodeType</span><span class="o">&lt;</span><span class="n">AttemptPrevious</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;AttemptSkipPrevious&quot;</span><span class="p">);</span>
     <span class="n">factory</span><span class="p">.</span><span class="n">registerSimpleCondition</span><span class="p">(</span><span class="s">&quot;DriveHomeEnd&quot;</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">bind</span><span class="p">(</span><span class="n">DriveHome</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">ref</span><span class="p">(</span><span class="n">mbfclient</span><span class="p">)));</span>
 
     <span class="k">auto</span> <span class="n">tree</span> <span class="o">=</span> <span class="n">factory</span><span class="p">.</span><span class="n">createTreeFromFile</span><span class="p">(</span><span class="n">BT_XML_PATH</span><span class="p">);</span>
@@ -938,6 +1013,11 @@
         <span class="k">if</span><span class="p">(</span> <span class="k">auto</span> <span class="n">attempt_next</span> <span class="o">=</span> <span class="k">dynamic_cast</span><span class="o">&lt;</span><span class="n">AttemptNext</span><span class="o">*&gt;</span><span class="p">(</span> <span class="n">node</span><span class="p">.</span><span class="n">get</span><span class="p">()</span> <span class="p">))</span>
         <span class="p">{</span>
             <span class="n">attempt_next</span><span class="o">-&gt;</span><span class="n">attachMBFClient</span><span class="p">(</span><span class="n">mbfclient</span><span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="k">if</span><span class="p">(</span> <span class="k">auto</span> <span class="n">attempt_skip</span> <span class="o">=</span> <span class="k">dynamic_cast</span><span class="o">&lt;</span><span class="n">AttemptSkip</span><span class="o">*&gt;</span><span class="p">(</span> <span class="n">node</span><span class="p">.</span><span class="n">get</span><span class="p">()</span> <span class="p">))</span>
+        <span class="p">{</span>
+            <span class="n">attempt_skip</span><span class="o">-&gt;</span><span class="n">attachMBFClient</span><span class="p">(</span><span class="n">mbfclient</span><span class="p">);</span>
         <span class="p">}</span>
 
         <span class="k">if</span><span class="p">(</span> <span class="k">auto</span> <span class="n">attempt_prev</span> <span class="o">=</span> <span class="k">dynamic_cast</span><span class="o">&lt;</span><span class="n">AttemptPrevious</span><span class="o">*&gt;</span><span class="p">(</span> <span class="n">node</span><span class="p">.</span><span class="n">get</span><span class="p">()</span> <span class="p">))</span>
@@ -951,24 +1031,115 @@
     <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div>
-<p>and the corresponding <code>.xml</code> file</p>
-<div class="highlight"><pre><span></span><code><span class="nt">&lt;root</span> <span class="na">main_tree_to_execute =</span> <span class="s">&quot;MainTree&quot;</span> <span class="nt">&gt;</span>
+and the corresponding <code>.xml</code> file that specifies the relations between each node</p>
+<div class="highlight"><pre><span></span><code> <span class="nt">&lt;root</span> <span class="na">main_tree_to_execute =</span> <span class="s">&quot;MainTree&quot;</span> <span class="nt">&gt;</span>
     <span class="nt">&lt;BehaviorTree</span> <span class="na">ID=</span><span class="s">&quot;MainTree&quot;</span><span class="nt">&gt;</span>
         <span class="nt">&lt;Sequence</span> <span class="na">name=</span><span class="s">&quot;endless_circle&quot;</span><span class="nt">&gt;</span>
             <span class="nt">&lt;DriveHomeStart</span> <span class="na">name=</span><span class="s">&quot;drive_home_start&quot;</span><span class="nt">/&gt;</span>
-                <span class="nt">&lt;Repeat</span> <span class="na">num_cycles=</span><span class="s">&quot;-1&quot;</span><span class="nt">&gt;</span>
-                <span class="nt">&lt;Fallback&gt;</span>
-                    <span class="nt">&lt;AttemptNext</span> <span class="na">name=</span><span class="s">&quot;attempt_next&quot;</span><span class="nt">/&gt;</span>
-                    <span class="nt">&lt;AttemptPrevious</span> <span class="na">name=</span><span class="s">&quot;attempt_previous&quot;</span><span class="nt">/&gt;</span>
-                    <span class="nt">&lt;DriveHomeEnd</span> <span class="na">name=</span><span class="s">&quot;drive_home_end&quot;</span><span class="nt">/&gt;</span>
-                <span class="nt">&lt;/Fallback&gt;</span>
-            <span class="nt">&lt;/Repeat&gt;</span>
+                <span class="nt">&lt;ForceSuccess&gt;</span>
+                    <span class="nt">&lt;Repeat</span> <span class="na">num_cycles=</span><span class="s">&quot;10&quot;</span><span class="nt">&gt;</span>
+                        <span class="nt">&lt;Fallback&gt;</span>
+                            <span class="nt">&lt;AttemptNext</span> <span class="na">name=</span><span class="s">&quot;attempt_next&quot;</span><span class="nt">/&gt;</span>
+                            <span class="nt">&lt;AttemptSkip</span> <span class="na">name=</span><span class="s">&quot;attempt_skip&quot;</span><span class="nt">/&gt;</span>
+                            <span class="nt">&lt;AttemptPrevious</span> <span class="na">name=</span><span class="s">&quot;attempt_previous&quot;</span><span class="nt">/&gt;</span>
+                            <span class="nt">&lt;AttemptSkipPrevious</span> <span class="na">name=</span><span class="s">&quot;attempt_skip_previous&quot;</span><span class="nt">/&gt;</span>
+                        <span class="nt">&lt;/Fallback&gt;</span>
+                    <span class="nt">&lt;/Repeat&gt;</span>
+                <span class="nt">&lt;/ForceSuccess&gt;</span>
+            <span class="nt">&lt;DriveHomeEnd</span> <span class="na">name=</span><span class="s">&quot;drive_home_end&quot;</span><span class="nt">/&gt;</span>
         <span class="nt">&lt;/Sequence&gt;</span>
     <span class="nt">&lt;/BehaviorTree&gt;</span>
-<span class="nt">&lt;/root&gt;</span>
+ <span class="nt">&lt;/root&gt;</span>
 </code></pre></div>
+<p>What isn't shown here is the <code>mbf_advanced::MBFClient</code>: it is a C++ node that communicated with the Move Base Flex Action server to retrieve plans (next and previous), very similar to the previous tutorials. The full code for this client can be found <a href="https://github.com/uos/mbf_tutorials/blob/master/advanced/include/mbf_advanced/mbf_cpp_client.h">here</a>.</p>
 <h2 id="the-code-explained">The Code explained</h2>
-<p>TODO</p>
+<p>First, we want to drive "Home" a.k.a to the robots spawn position. This is done with a simple condition, that returns <code>BT::NodeStates::SUCCESS</code> if that happened successfully</p>
+<div class="highlight"><pre><span></span><code><span class="n">BT</span><span class="o">::</span><span class="n">NodeStatus</span> <span class="n">DriveHome</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">mbf_advanced</span><span class="o">::</span><span class="n">MBFClient</span><span class="o">&gt;&amp;</span> <span class="n">mbfclient</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">ROS_INFO_STREAM</span><span class="p">(</span><span class="s">&quot;BT: driving home&quot;</span><span class="p">);</span>
+    <span class="k">return</span> <span class="n">mbfclient</span><span class="o">-&gt;</span><span class="n">driveHome</span><span class="p">()</span> <span class="o">?</span> <span class="n">BT</span><span class="o">::</span><span class="n">NodeStatus</span><span class="o">::</span><span class="nl">SUCCESS</span> <span class="p">:</span> <span class="n">BT</span><span class="o">::</span><span class="n">NodeStatus</span><span class="o">::</span><span class="n">FAILURE</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>The Fallback node of the tree performs exactly one of the actions <code>AttemptNext</code> or <code>AttemptPrevious</code> and attempts each from left to right in the tree.</p>
+<p><code>AttemptNext</code> performs the planning of the next goal on each <code>tick()</code> and only returns <code>BT::NodeStatus::Failure</code> when the plan fails or we've reached the end of the circle.</p>
+<div class="highlight"><pre><span></span><code><span class="n">BT</span><span class="o">::</span><span class="n">NodeStatus</span> <span class="n">tick</span><span class="p">()</span> <span class="k">override</span>
+<span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">mbfclient_</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">ROS_INFO_STREAM</span><span class="p">(</span><span class="s">&quot;BT: &quot;</span> <span class="o">&lt;&lt;</span> <span class="k">this</span><span class="o">-&gt;</span><span class="n">name</span><span class="p">());</span>
+
+        <span class="k">while</span> <span class="p">(</span><span class="n">mbfclient_</span><span class="o">-&gt;</span><span class="n">next_move</span><span class="p">()</span> <span class="o">==</span> <span class="n">State</span><span class="o">::</span><span class="n">MOVING</span><span class="p">)</span> <span class="p">{}</span>
+
+        <span class="k">return</span> <span class="n">BT</span><span class="o">::</span><span class="n">NodeStatus</span><span class="o">::</span><span class="n">FAILURE</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">return</span> <span class="n">BT</span><span class="o">::</span><span class="n">NodeStatus</span><span class="o">::</span><span class="n">FAILURE</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><code>AttemptSkip</code> is very similar to <code>AttemptNext</code>, but is only called after a failed <code>AttemptNext</code> and therefore skips to next point in circle.</p>
+<div class="highlight"><pre><span></span><code><span class="n">BT</span><span class="o">::</span><span class="n">NodeStatus</span> <span class="n">tick</span><span class="p">()</span> <span class="k">override</span>
+<span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">mbfclient_</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">ROS_INFO_STREAM</span><span class="p">(</span><span class="s">&quot;BT: &quot;</span> <span class="o">&lt;&lt;</span> <span class="k">this</span><span class="o">-&gt;</span><span class="n">name</span><span class="p">());</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">mbfclient_</span><span class="o">-&gt;</span><span class="n">next_move</span><span class="p">()</span> <span class="o">==</span> <span class="n">State</span><span class="o">::</span><span class="n">MOVING</span><span class="p">)</span> <span class="o">?</span> <span class="n">BT</span><span class="o">::</span><span class="n">NodeStatus</span><span class="o">::</span><span class="nl">SUCCESS</span> <span class="p">:</span> <span class="n">BT</span><span class="o">::</span><span class="n">NodeStatus</span><span class="o">::</span><span class="n">FAILURE</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">return</span> <span class="n">BT</span><span class="o">::</span><span class="n">NodeStatus</span><span class="o">::</span><span class="n">FAILURE</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><code>AttemptPrevious</code> attempts to return to the previous state and returns a <code>BT::NodeStatus::Failure</code> if that fails or we've reached the end of the circle:</p>
+<div class="highlight"><pre><span></span><code><span class="n">BT</span><span class="o">::</span><span class="n">NodeStatus</span> <span class="n">tick</span><span class="p">()</span> <span class="k">override</span>
+<span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">mbfclient_</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">ROS_INFO_STREAM</span><span class="p">(</span><span class="s">&quot;BT: &quot;</span> <span class="o">&lt;&lt;</span> <span class="k">this</span><span class="o">-&gt;</span><span class="n">name</span><span class="p">());</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">mbfclient_</span><span class="o">-&gt;</span><span class="n">prev_move</span><span class="p">()</span> <span class="o">==</span> <span class="n">State</span><span class="o">::</span><span class="n">MOVING</span><span class="p">)</span> <span class="o">?</span> <span class="n">BT</span><span class="o">::</span><span class="n">NodeStatus</span><span class="o">::</span><span class="nl">SUCCESS</span> <span class="p">:</span> <span class="n">BT</span><span class="o">::</span><span class="n">NodeStatus</span><span class="o">::</span><span class="n">FAILURE</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">return</span> <span class="n">BT</span><span class="o">::</span><span class="n">NodeStatus</span><span class="o">::</span><span class="n">FAILURE</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>When all Fallback options fail we want to return "Home" again. This happens after a fatal planning error or after reaching the end of the circle pose queue. By forcing the Fallback node to return Success in the xml with <code>ForceSuccess</code></p>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;ForceSuccess&gt;</span>
+    <span class="nt">&lt;Repeat</span> <span class="na">num_cycles=</span><span class="s">&quot;-1&quot;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;Fallback&gt;</span>
+            <span class="nt">&lt;AttemptNext</span> <span class="na">name=</span><span class="s">&quot;attempt_next&quot;</span><span class="nt">/&gt;</span>
+            ...
+        <span class="nt">&lt;/Fallback&gt;</span>
+    <span class="nt">&lt;/Repeat&gt;</span>
+<span class="nt">&lt;/ForceSuccess&gt;</span>
+</code></pre></div>
+<p>the BT reaches the last state: drive Home.</p>
+<div class="highlight"><pre><span></span><code><span class="n">BT</span><span class="o">::</span><span class="n">NodeStatus</span> <span class="n">DriveHome</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">mbf_advanced</span><span class="o">::</span><span class="n">MBFCircleClient</span><span class="o">&gt;&amp;</span> <span class="n">mbfclient</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">ROS_INFO_STREAM</span><span class="p">(</span><span class="s">&quot;BT: driving home&quot;</span><span class="p">);</span>
+    <span class="k">return</span> <span class="n">mbfclient</span><span class="o">-&gt;</span><span class="n">driveHome</span><span class="p">()</span> <span class="o">?</span> <span class="n">BT</span><span class="o">::</span><span class="n">NodeStatus</span><span class="o">::</span><span class="nl">SUCCESS</span> <span class="p">:</span> <span class="n">BT</span><span class="o">::</span><span class="n">NodeStatus</span><span class="o">::</span><span class="n">FAILURE</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<h2 id="try-it-yourself">Try it yourself</h2>
+<div class="admonition recovery behavior">
+<p class="admonition-title">Recovery</p>
+<p>Please note that the recovery behaviors from the <a href="../recovery_behavior/">previous tutorial</a> are explicitely disabled to make it easier for you to produce a planner error!</p>
+</div>
+<p>Launch the gazebo world for turtlebot:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">export</span> <span class="nv">TURTLEBOT3_MODEL</span><span class="o">=</span>burger
+roslaunch turtlebot3_gazebo turtlebot3_world.launch
+</code></pre></div>
+<p>Launch Move Base Flex w/o recovery mode:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">export</span> <span class="nv">TURTLEBOT3_MODEL</span><span class="o">=</span>burger
+roslaunch mbf_advanced amcl_demo_mbf.launch
+</code></pre></div>
+<p>Launch the behavior tree</p>
+<div class="highlight"><pre><span></span><code>roslaunch mbf_advanced mbf_behavior_tree
+</code></pre></div>
+<p>If you want, you can try to produce fatal plans with the help of an additional square in the Gazebo world:</p>
+<div class="highlight"><pre><span></span><code>roslaunch mbf_advanced spawn_box.launch
+</code></pre></div>
+<p>Choose the object move mode in gazebo and place the square somewhere into the path of the robot, and whatch RViz!</p>
+<p><img alt="" src="../../../img/bt.gif" /></p>
+<h2 id="wrapping-up">Wrapping up</h2>
+<p>You may have noticed that this BT uses high level actions (drive to goal, drive home) in its leaves. Because BTs are so flexible, you could also use lower level actions in its leaves: a sequence like <em>NewGoal</em>, <em>ClearGoal</em>, <em>GetPath</em>, <em>ExePath</em> and <em>Recovery</em>. We'll do this in our <a href="../pytrees/">next tutorial based on <code>py_trees_ros</code></a>.</p>
                 
               
               
