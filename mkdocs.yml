@@ -11,6 +11,9 @@ theme:
       - navigation.instant
       - navigation.tabs
       - navigation.sections
+    logo: img/mbf_icon.png
+    palette:
+      primary: cyan
 
 markdown_extensions:
   - pymdownx.highlight
