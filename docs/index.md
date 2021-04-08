@@ -34,11 +34,11 @@ MBF, first are foremost, provides *an enhanced version of the planner, controlle
 	``` abstract
 	@inproceedings{puetz21cvp,
     	author = {Pütz, Sebastian and Wiemann, Thomas and Kleine Piening, Malte and Hertzberg, Joachim},
-   		title = {Continuous Shortest Paths Vector Field Navigation on 3D Triangular Meshes for Mobile Robots},
-    	booktitle = {Proceedings of the IEEE International Conference on Robotics and Automation. IEEE International Conference on Robotics and Automation (ICRA-2021), May 30-June 5, Xi'an, China},
-    	year = {2021},
-    	organization = {IEEE},
-    	publisher = {IEEE}
+   		title = {Continuous Shortest Path Vector Field Navigation on 3D Triangular Meshes for Mobile Robots},
+    	booktitle = {2021 IEEE International Conference on Robotics and Automation (ICRA)},
+    	year = 2021,
+  		url = {https://github.com/uos/mesh_navigation},
+ 		note = {Software available at \url{https://github.com/uos/mesh_navigation}}
 	}
 	```
 
