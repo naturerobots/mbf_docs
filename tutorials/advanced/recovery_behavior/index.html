@@ -824,7 +824,8 @@
                 
                 
                 <h1 id="recovery-behavior">Recovery Behavior</h1>
-<p>Recovering from unknown or failure conditions in dynamic planning environment can be implemented with revoery behaviors. Recovery behavior is usually implemented to only trigger when continuous replanning has failed. They can be loaded into Move Base Flex the same way controllers and planners are configured:</p>
+<p>WIP: noetic release of <code>moveback_recovery</code>.</p>
+<p>Recovering from unknown or failure conditions in dynamic planning environment can be implemented with revovery behaviors. Recovery behavior is usually implemented to only trigger when continuous replanning has failed. They can be loaded into Move Base Flex the same way controllers and planners are configured:</p>
 <div class="highlight"><pre><span></span><code>recovery_behaviors:
   - name: rotate_recovery
     type: rotate_recovery/RotateRecovery
@@ -834,7 +835,8 @@
 recovery_enabled: true
 recovery_patience: 15.0
 </code></pre></div>
-<p>This means that the robot will first try to rotate itself and replan. If this fails howeber, the costmap will be cleared. This may be necessary if there are sensor issues. Recovery behavior is enabled by default</p>
+<p>This means that the robot will first try to rotate itself and replan. If this fails however, the costmap will be cleared. This may be necessary if there are sensor issues.</p>
+<p>Recovery behavior is enabled by default, but the specific plugins have to be implemented/loaded by the user.</p>
 <p>Many other recovery plugins are available for your ROS distro, which are not explicitely covered here.</p>
 <h2 id="run-the-example">Run the example</h2>
 <div class="admonition note on replanning">
@@ -852,7 +854,7 @@ roslaunch mbf_advanced amcl_demo_mbf_recovery.launch
 <p>Launch a goal publising node, e.g. the example from the beginner tutorial</p>
 <div class="highlight"><pre><span></span><code>roslaunch mbf_beginner mbf_goal_client.py
 </code></pre></div>
-<p>Now grab the blue box in Gazebo, and drop it somewhere in front of the robot. You will see that the robot will attempt rotate itself, and if that fails, clears the costmap temporarily!</p>
+<p>Now grab the blue box in Gazebo, and drop it somewhere in front of the robot. You will see that the robot will attempt to rotate itself, and if that fails, clears the costmap temporarily!</p>
                 
               
               
