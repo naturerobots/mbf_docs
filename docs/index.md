@@ -9,6 +9,39 @@ MBF, first are foremost, provides *an enhanced version of the planner, controlle
 1. It exposes action servers for planning, controlling and recovering, providing detailed information of the current state and the plugin’s feedback. An external executive logic can use MBF and its actions to perform smart and flexible navigation strategies. 
 2. MBF enables the use of *other* map representations (besides cost maps), e.g. meshes or grid_map.
 
+## ROSCon 2017
+
+<div style="position:relative;padding-top:56.25%;">
+<iframe src="https://player.vimeo.com/video/236174072" width="640" height="360" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe>
+</div>
+
+## Publications
+
+!!! abstract "Move Base Flex: A Highly Flexible Navigation Framework for Mobile Robots"
+    ``` bibtex
+    @inproceedings{puetz18mbf,
+  		author = {Sebastian Pütz and Jorge Santos Simón and Joachim Hertzberg},
+  		title = {{Move Base Flex}: A Highly Flexible Navigation Framework for Mobile Robots},
+  		booktitle = {2018 IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)},
+  		year = 2018,
+  		month = {October},
+  		url = {https://github.com/magazino/move_base_flex},
+ 		note = {Software available at \url{https://github.com/magazino/move_base_flex}}
+	}
+	```
+
+!!! abstract "Continuous Shortest Path Vector Field Navigation on 3D Triangular Meshes for Mobile Robots"
+	``` abstract
+	@inproceedings{puetz21cvp,
+    	author = {Pütz, Sebastian and Wiemann, Thomas and Kleine Piening, Malte and Hertzberg, Joachim},
+   		title = {Continuous Shortest Paths Vector Field Navigation on 3D Triangular Meshes for Mobile Robots},
+    	booktitle = {Proceedings of the IEEE International Conference on Robotics and Automation. IEEE International Conference on Robotics and Automation (ICRA-2021), May 30-June 5, Xi'an, China},
+    	year = {2021},
+    	organization = {IEEE},
+    	publisher = {IEEE}
+	}
+	```
+
 
 ## Core Features
  
