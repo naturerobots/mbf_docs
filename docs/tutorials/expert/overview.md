@@ -1,4 +1,4 @@
-# Advanced Tutorials
+# Expert Tutorials
 
 ## Topics
 1. **Multi Robot Navigation** <br> Learn to navigate multiple robots from one Move Base Flex Instance. Continue [here](./multi_robot_navigation.md).
