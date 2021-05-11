@@ -48,7 +48,8 @@ nav:
       - Behavior Tree (Python): tutorials/advanced/pytrees.md
     - Expert: 
       - Overview: tutorials/expert/overview.md
-    - Writing MBF Plugins: tutorials/writing_mbf_plugins.md
-    - Mesh Navigation Stack: tutorials/mesh_navigation_stack.md
+      - Multi Robot Navigation: tutorials/expert/multi_robot_navigation.md
+      - Multi Planner Navigation: tutorials/expert/multi_planner_navigation.md
+      - Custom Recovery Behavior: tutorials/expert/custom_recovery_behavior.md
   - Concepts:
     - Concepts: concepts/concepts.md
