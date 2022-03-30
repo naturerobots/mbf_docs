@@ -300,7 +300,7 @@ roslaunch mbf_advanced amcl_demo_mbf.launch
 Launch the behavior tree
 
 ```bash
-roslaunch mbf_advanced mbf_behavior_tree
+rosrun mbf_advanced mbf_behavior_tree
 ```
 
 If you want, you can try to produce fatal plans with the help of an additional square in the Gazebo world:
