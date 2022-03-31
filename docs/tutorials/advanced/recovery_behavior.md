@@ -43,7 +43,7 @@ roslaunch mbf_advanced amcl_demo_mbf_recovery.launch
 Launch a goal publising node, e.g. the example from the beginner tutorial
 
 ```bash
-roslaunch mbf_beginner mbf_goal_client.py
+rosrun mbf_beginner mbf_goal_client.py
 ```
 
 Now grab the blue box in Gazebo, and drop it somewhere in front of the robot. You will see that the robot will attempt to rotate itself, and if that fails, clears the costmap temporarily!
