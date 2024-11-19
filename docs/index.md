@@ -31,8 +31,8 @@ MBF, first are foremost, provides *an enhanced version of the planner, controlle
   		booktitle = {2018 IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)},
   		year = 2018,
   		month = {October},
-  		url = {https://github.com/magazino/move_base_flex},
- 		note = {Software available at \url{https://github.com/magazino/move_base_flex}}
+  		url = {https://github.com/naturerobots/move_base_flex},
+ 		note = {Software available at \url{https://github.com/naturerobots/move_base_flex}}
 	}
 	```
 

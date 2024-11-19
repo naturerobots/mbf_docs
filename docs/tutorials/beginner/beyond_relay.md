@@ -83,7 +83,7 @@ This does, however, make it harder to use advanced features of Move Base Flex. L
     geometry_msgs/TwistStamped last_cmd_vel  # last command calculated by the controller`
     ```
 
-    [Source](https://github.com/magazino/move_base_flex/blob/master/mbf_msgs/action/MoveBase.action)
+    [Source](https://github.com/naturerobots/move_base_flex/blob/master/mbf_msgs/action/MoveBase.action)
 
 
 ## Interacting with Move Base Flex

@@ -2,7 +2,7 @@ site_name: Move Base Flex Documentation
 site_url: https://naturerobots.github.io
 
 repo_name: Github
-repo_url: https://github.com/magazino/move_base_flex
+repo_url: https://github.com/naturerobots/move_base_flex
 
 docs_dir: docs
 theme:
