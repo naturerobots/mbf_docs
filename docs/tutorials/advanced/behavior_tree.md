@@ -1,6 +1,6 @@
 # Behavior Trees
 
-Behavior Trees are an interesting alternative to State Machines. Actions between states in a SMACH become leaves in a tree, and moving between states in a SMACH is handles by the root of the tree in Behavior Tree based planning. For more details, visit [this overview](https://www.behaviortree.dev/bt_basics/).
+Behavior Trees are an interesting alternative to State Machines. Actions between states in a SMACH become leaves in a tree, and moving between states in a SMACH is handles by the root of the tree in Behavior Tree based planning. For more details, visit [this overview](https://www.behaviortree.dev/docs/learn-the-basics/BT_basics).
 
 We will use a Behavior Tree based on the [BehaviorTree.CPP library](https://github.com/BehaviorTree/BehaviorTree.CPP) to implement the following algorithm:
 
@@ -191,7 +191,7 @@ and the corresponding `.xml` file that specifies the relations between each node
  </root>
 ```
 
-What isn't shown here is the `mbf_advanced::MBFClient`: it is a C++ node that communicated with the Move Base Flex Action server to retrieve plans (next and previous), very similar to the previous tutorials. The full code for this client can be found [here](https://github.com/naturerobots/mbf_tutorials/blob/master/advanced/include/mbf_advanced/mbf_cpp_client.h).
+What isn't shown here is the `mbf_advanced::MBFClient`: it is a C++ node that communicated with the Move Base Flex Action server to retrieve plans (next and previous), very similar to the previous tutorials. The full code for this client can be found [here](https://github.com/naturerobots/mbf_tutorials/blob/7a15ba8425fa354b6b6444eaa14c60f5d90915bb/advanced/include/mbf_advanced/mbf_circle_client.h).
 
 ## The Code explained
 

@@ -115,7 +115,7 @@ def simple_goal_cb(msg):
 ```
 and relays the MoveBaseAction to the Move Base Flex action client!
 
-At this stage, we are using the global planner and local planner defined in [move_base.yml](https://github.com/naturerobots/mbf_tutorials/blob/master/beginner/param/move_base.yaml).
+At this stage, we are using the global planner and local planner defined in [move_base_flex.yaml](https://github.com/naturerobots/mbf_tutorials/blob/7a15ba8425fa354b6b6444eaa14c60f5d90915bb/beginner/param/move_base_flex.yaml).
 
 
 ## A Relay with more control
