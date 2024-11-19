@@ -191,7 +191,7 @@ and the corresponding `.xml` file that specifies the relations between each node
  </root>
 ```
 
-What isn't shown here is the `mbf_advanced::MBFClient`: it is a C++ node that communicated with the Move Base Flex Action server to retrieve plans (next and previous), very similar to the previous tutorials. The full code for this client can be found [here](https://github.com/uos/mbf_tutorials/blob/master/advanced/include/mbf_advanced/mbf_cpp_client.h).
+What isn't shown here is the `mbf_advanced::MBFClient`: it is a C++ node that communicated with the Move Base Flex Action server to retrieve plans (next and previous), very similar to the previous tutorials. The full code for this client can be found [here](https://github.com/naturerobots/mbf_tutorials/blob/master/advanced/include/mbf_advanced/mbf_cpp_client.h).
 
 ## The Code explained
 

@@ -4,7 +4,7 @@
 
 TODO
 
-Source: [uos/mesh_navigation](https://github.com/uos/mesh_navigation#software-stack)
+Source: [mesh_navigation](https://github.com/naturerobots/mesh_navigation#software-stack)
 
 ### Default "SimpleNavigationServer" Navigation
 

@@ -19,4 +19,4 @@ catkin_make
 
 <br>
 
-The full source code can be found [here](https://github.com/uos/mbf_tutorials/tree/master/beginner).
+The full source code can be found [here](https://github.com/naturerobots/mbf_tutorials/tree/master/beginner).

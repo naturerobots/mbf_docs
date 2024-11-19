@@ -6,9 +6,9 @@ For a quick demo, just follow the following steps. You will learn how to control
 
 <br>
 
-Clone [mbf_tutorials](https://github.com/uos/mbf_tutorials) 
+Clone [mbf_tutorials](https://github.com/naturerobots/mbf_tutorials) 
 ```bash
-git clone git@github.com:uos/mbf_tutorials.git ~/catkin_ws/src/mbf_tutorials
+git clone git@github.com:naturerobots/mbf_tutorials.git ~/catkin_ws/src/mbf_tutorials
 ```
 Install dependencies with rosdep (include all tutorials for ease of use)
 ```bash
@@ -115,7 +115,7 @@ def simple_goal_cb(msg):
 ```
 and relays the MoveBaseAction to the Move Base Flex action client!
 
-At this stage, we are using the global planner and local planner defined in [move_base.yml](https://github.com/uos/mbf_tutorials/blob/master/beginner/param/move_base.yaml).
+At this stage, we are using the global planner and local planner defined in [move_base.yml](https://github.com/naturerobots/mbf_tutorials/blob/master/beginner/param/move_base.yaml).
 
 
 ## A Relay with more control
@@ -303,5 +303,5 @@ roslaunch mbf_beginner rviz.launch
 
 <br>
 
-The full source code can be found [here](https://github.com/uos/mbf_tutorials/tree/master/beginner).
+The full source code can be found [here](https://github.com/naturerobots/mbf_tutorials/tree/master/beginner).
 
