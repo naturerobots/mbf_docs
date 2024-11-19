@@ -31,8 +31,8 @@ MBF, first are foremost, provides *an enhanced version of the planner, controlle
   		booktitle = {2018 IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)},
   		year = 2018,
   		month = {October},
-  		url = {https://github.com/magazino/move_base_flex},
- 		note = {Software available at \url{https://github.com/magazino/move_base_flex}}
+  		url = {https://github.com/naturerobots/move_base_flex},
+ 		note = {Software available at \url{https://github.com/naturerobots/move_base_flex}}
 	}
 	```
 
@@ -43,8 +43,8 @@ MBF, first are foremost, provides *an enhanced version of the planner, controlle
    		title = {Continuous Shortest Path Vector Field Navigation on 3D Triangular Meshes for Mobile Robots},
     	booktitle = {2021 IEEE International Conference on Robotics and Automation (ICRA)},
     	year = 2021,
-  		url = {https://github.com/uos/mesh_navigation},
- 		note = {Software available at \url{https://github.com/uos/mesh_navigation}}
+  		url = {https://github.com/naturerobots/mesh_navigation},
+ 		note = {Software available at \url{https://github.com/naturerobots/mesh_navigation}}
 	}
 	```
 
@@ -77,4 +77,4 @@ To accomplish this goal, we
 
 * Follow the [MBF Starting Guide](./installation.md) and [Tutorial](./tutorials/overview.md)
 * See the [Move Base Flex Documentation and Tutorials](https://wiki.ros.org/move_base_flex) in the ROS wiki. 
-* Full code for the showcase and tutorials can be found in [this repository](https://github.com/uos/mbf_tutorials).
+* Full code for the showcase and tutorials can be found in [this repository](https://github.com/naturerobots/mbf_tutorials).

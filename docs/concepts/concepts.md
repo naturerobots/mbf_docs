@@ -23,7 +23,7 @@ Costmaps can be created from LIDAR, RADAR, sonar, (depth) images and more.
 Many different environment represetations exist, e.g.
 
 * 3D costmap: represents planning space in 3D
-* Mesh maps: the planning space is represented with a surface mesh. You can see a mesh navigation plugin for Move Base Flex [here](https://github.com/uos/mesh_navigation).
+* Mesh maps: the planning space is represented with a surface mesh. You can see a mesh navigation plugin for Move Base Flex [here](https://github.com/naturerobots/mesh_navigation).
 * Gradient maps: Typically used for traversibility tasks as surface is represented as gradients
 
 ## Planners, Controllers, Recovery Behavior

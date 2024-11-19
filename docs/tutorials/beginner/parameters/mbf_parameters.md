@@ -85,8 +85,8 @@ and loads these initial parameters (among others) in the launch file
 
 #### Sources
 
-* [mbf_abstract_nav](https://github.com/magazino/move_base_flex/blob/596ed881bfcbd847e9d296c6d38e4d3fa3b74a4d/mbf_abstract_nav/src/mbf_abstract_nav/__init__.py)
-* [mbf_costmap_nav](https://github.com/magazino/move_base_flex/blob/596ed881bfcbd847e9d296c6d38e4d3fa3b74a4d/mbf_costmap_nav/cfg/MoveBaseFlex.cfg) 
+* [mbf_abstract_nav](https://github.com/naturerobots/move_base_flex/blob/596ed881bfcbd847e9d296c6d38e4d3fa3b74a4d/mbf_abstract_nav/src/mbf_abstract_nav/__init__.py)
+* [mbf_costmap_nav](https://github.com/naturerobots/move_base_flex/blob/596ed881bfcbd847e9d296c6d38e4d3fa3b74a4d/mbf_costmap_nav/cfg/MoveBaseFlex.cfg) 
 
 To use `rqt_reconfigure`, run
 
